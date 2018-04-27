@@ -5,7 +5,7 @@ var array = [3,9,11,12,2,5,88,32];
 console.log("before:" + array);
 
 
-bubbleSort(array);
+selectSort(array);
 console.log("after:" + array);
 
 //bubble sort
@@ -20,7 +20,23 @@ function bubbleSort(array){
 	}
 }
 
+//select sort
+function selectSort(array){
+	var len = array.length;
+	for(var i=0;i<len;i++){
+		var index = i;
+		for(var j=i;j<len-1;j++){
+			if(array[index]>array[j+1]){
+				index = j+1;
+			}
+		}
+		if(index !== i){
+			swap(array,index,i);
 
+		}
+	}
+
+}
 
 
 function swap(array,index1,index2){
