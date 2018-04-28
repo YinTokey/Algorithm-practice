@@ -5,7 +5,7 @@ var array = [3,9,11,12,2,5,88,32];
 console.log("before:" + array);
 
 
-insertSort(array);
+quickSort(array,0,array.length-1);
 console.log("after:" + array);
 
 //bubble sort
@@ -53,6 +53,40 @@ function insertSort(array){
 	}
 
 }
+
+
+//quick sort
+function quickSort(arr, left, right){
+   var len = arr.length, 
+   pivot,
+   partitionIndex;
+
+
+  if(left < right){
+    pivot = right;
+    partitionIndex = partition(arr, pivot, left, right);
+    
+   //sort left and right
+   quickSort(arr, left, partitionIndex - 1);
+   quickSort(arr, partitionIndex + 1, right);
+  }
+  return arr;
+}
+
+function partition(arr, pivot, left, right){
+   var pivotValue = arr[pivot],
+       partitionIndex = left;
+
+   for(var i = left; i < right; i++){
+    if(arr[i] < pivotValue){
+      swap(arr, i, partitionIndex);
+      partitionIndex++;
+    }
+  }
+  swap(arr, right, partitionIndex);
+  return partitionIndex;
+}
+
 
 function swap(array,index1,index2){
     var tmp  = array[index2];
