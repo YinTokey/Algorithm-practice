@@ -42,14 +42,14 @@ function knapSack(w,val,capacity,n){
 	return T;
 }
 
-
+//找到需要的物品
 function findValue(w,val,capacity,n,T){
 
 	var i = n-1, j = capacity;
 	while ( i > 0 && j > 0 ){
 
 		if(T[i][j] != T[i-1][j]){
-			console.log('物品'+i+',重量：'+ w[i] +',价值：' + values[i]);
+			console.log('选择物品'+i+',重量：'+ w[i] +',价值：' + values[i]);
 			j = j- w[i];
 			i--;
 		}else{
@@ -57,8 +57,8 @@ function findValue(w,val,capacity,n,T){
 		}
 	}
 	if(i == 0 ){
-		if(T[i][j] != 0){
-			console.log('物品'+i+',重量：'+ w[i] +',价值：' + values[i]);
+		if(T[i][j] != 0){ //那么第一行的物品也可以取
+			console.log('选择物品'+i+',重量：'+ w[i] +',价值：' + values[i]);
 
 		}
 	}
@@ -67,9 +67,9 @@ function findValue(w,val,capacity,n,T){
 // w = [2,3,4].  val = [3,4,5] , n = 3 , capacity = 5
 //function knapSack([2,3,4],[3,4,5],5,3);
 // 
-var values = [3,4,5,6],
-	weights = [2,3,4,6],
-	capacity = 9,
+var values = [3,4,5],
+	weights = [2,3,4],
+	capacity = 5,
 	n = values.length;
 
 console.log(knapSack(weights,values,capacity,n));
