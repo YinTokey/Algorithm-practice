@@ -18,7 +18,6 @@ function minCoins(coins,total,n){
 			}else{
 				if(j >= coins[i]){
 					T[i][j] = Math.min(T[i-1][j],1+T[i][j-coins[i]])
-					
 			
 				}else{
 					T[i][j] = T[i-1][j];
@@ -28,12 +27,27 @@ function minCoins(coins,total,n){
 		}
 
 	}
+	findValue(coins,total,n,T);
 
 	return T;
 
 
 }
 
+function findValue(coins,total,n,T){
+	var i = n-1, j = total;
+	var result = []; //结果保存在数组中
+	while(i>0 && j >0){
+		if(T[i][j]!=T[i-1][j]){
+			//锁定位置，开始找构成结果的硬币组合
+			console.log(T[i][j]);
+			break
+		}else{
+			i--;
+		}
+	}
+
+}
 
 
 var coins = [1,5,6,8];
