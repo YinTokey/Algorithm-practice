@@ -72,7 +72,7 @@ function findValue(coins,total,n,T){
 
 
 var coins = [1,2,5,6];
-var total = 19
+var total = 16
 var n = coins.length
 
 console.log(minCoins(coins,total,n));
