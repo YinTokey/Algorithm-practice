@@ -1,78 +1,76 @@
-//动态规划 -- 硬币找零问题
-function minCoins(coins,total,n){
-	var T = [];
 
-	for(let i = 0;i<n;i++){
-		T[i] = []
-		for (let j=0;j<= total;j++){
-			if(j == 0){
-				T[i][j] = 0;
-				continue;
-			}
+// 解决方案参考
+// https://blog.csdn.net/Faremax/article/details/78078259
 
-			if(i == 0){
-				T[i][j] = j/coins[i]; //硬币找零一定要有个 最小面额1，否则会无解
-			}else{
-				if(j >= coins[i]){
-					T[i][j] = Math.min(T[i-1][j],1+T[i][j-coins[i]])
-			
-				}else{
-					T[i][j] = T[i-1][j];
-				}
-			}
+/*
+二叉树深度
+*/
 
-		}
-
-	}
-	findValue(coins,total,n,T);
-
-	return T;
-
-}
-
-function findValue(coins,total,n,T){
-	var i = n-1, j = total;
-	while(i>0 && j >0){
-		if(T[i][j]!=T[i-1][j]){
-			//锁定位置,确定i,j值，开始找构成结果的硬币组合。 其实根据这种计算方法，只需要考虑最右边那一列，从下往上推。
-			//console.log(T[i][j]);
-			break
-		}else{
-			i--;
-		}
-	}
-
-	var s = []; //存储组合结果
-	
-	while(i >= 0 && j > 0 ){
-		
-		s.push(coins[i]);
-		j=j-coins[i];
-		if(j <= 0){
-			break; //计算结束，退出循环
-		}
-		//如果 i == 0,那么就在第 0 行一直循环计算，直到 j=0即可
-		if(i>0){
-			//console.log(i);
-			while(T[i][j] == T[i-1][j]){
-				i--;
-				if(i== 0){
-					break;
-				}
-			}
-		}
-	}
-	
-	console.log(s);
-	//可以把数组s return 回去
-
-
-
+function TreeDepth(pRoot)
+{
+    if(pRoot === null){
+        return 0;
+    }
+    var left = TreeDepth(pRoot.left);
+    var right = TreeDepth(pRoot.right);
+    return Math.max(left +1,right + 1 );
 }
 
 
-var coins = [1,2,5,6];
-var total = 16
-var n = coins.length
+/*
+不用加减乘除做加法
+写一个函数，求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号。
+思路：
+两个数异或：相当于每一位相加，而不考虑进位；
+两个数相与，并左移一位：相当于求得进位；
+将上述两步的结果相加
+*/
+function Add(num1, num2)
+{
+    var sum, carry;
+    while(num2 != 0){
+        sum = num1 ^ num2;
+        carry = (num1 & num2) << 1;
+        num1 = sum;
+        num2 = carry;
+    }
+    return num1;
+}
 
-console.log(minCoins(coins,total,n));
+
+/*
+镜像二叉树
+
+*/
+function Mirror(root)
+{
+    if(!root){
+        return null;
+    }
+    var tempRoot = root.left;
+    root.left = root.right;
+    root.right = tempRoot;
+    
+    if(root.left){
+        Mirror(root.left);
+    }
+    if(root.right){
+        Mirror(root.right);
+    }
+}
+
+
+/*
+台阶问题
+
+一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。
+
+可以列举前几个，得出规律。
+*/
+function jumpFloorII(number)
+{
+    // write cde here
+    return Math.pow(2,number-1);
+}
+
+
