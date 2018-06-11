@@ -73,4 +73,26 @@ function jumpFloorII(number)
     return Math.pow(2,number-1);
 }
 
+/*
+构建乘积数组
+画矩阵，分别求上下三角。
+B【0】=1是可以先求出来的。
+
+*/
+
+
+
+
+/*
+求1+2+3+...+n，要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C）。
+利用逻辑与的短路求值
+*/ 
+function Sum_Solution(n)
+{
+    // write code here
+    var sum = n;
+    (n >0)&&(sum+=Sum_Solution(n-1))
+    return sum;
+}
+
 
