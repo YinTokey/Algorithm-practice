@@ -4,7 +4,7 @@
 # 不使用递归
 
 def fibonacii(num):
-    if num <=0:
+    if num <= 0:
         return  0
     elif num == 1:
         return 1
