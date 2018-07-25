@@ -9,6 +9,7 @@ def replaceSpace(string):
         else:
             result.append(i)
     return ''.join(result)
+    # 数组转字符串  "".join(list)  ，其中前面引号内容是单个字符之间的分隔符
 
 
 str = "We Are Happy"
