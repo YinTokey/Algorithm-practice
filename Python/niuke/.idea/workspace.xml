@@ -11,7 +11,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/niuke$fbnq.coverage" NAME="fbnq Coverage Results" MODIFIED="1532534294692" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/niuke$.coverage" NAME="从尾到头打印链表 Coverage Results" MODIFIED="1532535322273" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/niuke$.coverage" NAME="旋转数组的最小数字 Coverage Results" MODIFIED="1532538489822" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf>
@@ -42,11 +42,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="两个栈实现队列.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="两个栈实现队列.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/两个栈实现队列.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
               <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="旋转数组的最小数字.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/旋转数组的最小数字.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="22" column="30" lean-forward="true" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -68,6 +77,7 @@
         <option value="$PROJECT_DIR$/替换空格.py" />
         <option value="$PROJECT_DIR$/从尾到头打印链表.py" />
         <option value="$PROJECT_DIR$/两个栈实现队列.py" />
+        <option value="$PROJECT_DIR$/旋转数组的最小数字.py" />
       </list>
     </option>
   </component>
@@ -123,7 +133,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.从尾到头打印链表">
+  <component name="RunManager" selected="Python.旋转数组的最小数字">
     <configuration name="替换空格" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="jianzhioffer" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -162,6 +172,25 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="旋转数组的最小数字" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="jianzhioffer" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/旋转数组的最小数字.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="fbnq" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="jianzhioffer" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -185,9 +214,11 @@
       <item itemvalue="Python.fbnq" />
       <item itemvalue="Python.替换空格" />
       <item itemvalue="Python.从尾到头打印链表" />
+      <item itemvalue="Python.旋转数组的最小数字" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.旋转数组的最小数字" />
         <item itemvalue="Python.从尾到头打印链表" />
         <item itemvalue="Python.替换空格" />
         <item itemvalue="Python.fbnq" />
@@ -284,6 +315,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/旋转数组的最小数字.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="30" lean-forward="true" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
         </state>
       </provider>
     </entry>
