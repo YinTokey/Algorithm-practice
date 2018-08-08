@@ -8,12 +8,14 @@
 
 '''
 
+
 class Solution:
     def minNumberInRotateArray(self, rotateArray):
         if len(rotateArray) == 0:
             return 0
         elif len(rotateArray) == 1:
             return rotateArray[0]
+
         else:
             low = 0
             high = len(rotateArray) - 1
