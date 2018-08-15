@@ -60,4 +60,17 @@ def findNumOfK(array,k):
 
 array = [1,2,3,3,3,8,8,9,10,12,25]
 num = findNumOfK(array,3)
-print(num)
+# print(num)
+
+# 39二叉树深度
+# 直接傻叉递归， 不过执行效率有点低
+def TreeDepth(self, pRoot):
+    if (pRoot == None):
+        return 0
+
+    left = self.TreeDepth(pRoot.left)
+    right = self.TreeDepth(pRoot.right)
+    return max(left + 1, right + 1)
+
+# 变种 “输入一棵二叉树的根结点，判断该树是不是平衡二叉树。如果某二叉树中任意结点的左右子树的深度相差不超过1，那么它就是一棵平衡二叉树。”
+def isBalanced(root,int)
