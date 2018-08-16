@@ -73,4 +73,33 @@ def TreeDepth(self, pRoot):
     return max(left + 1, right + 1)
 
 # 变种 “输入一棵二叉树的根结点，判断该树是不是平衡二叉树。如果某二叉树中任意结点的左右子树的深度相差不超过1，那么它就是一棵平衡二叉树。”
-def isBalanced(root,int)
+# def isBalanced(root,int)
+
+def front_stack(root):
+    if root == None:
+        return
+    stack = []
+    result = []
+    node = root
+    while node or stack:
+        while node:
+            result.append(node.val)
+            stack.append(node)
+            node = node.left
+        node = stack.pop()
+        node = node.right
+
+
+def mid_stack(root):
+    if root == None:
+        return
+    stack = []
+    result = []
+    node = root
+    while node or stack:
+        while node:
+            stack.append(node)
+            node = node.left
+        node = stack.pop() #到达最下面最左边
+        result.append(node.val)
+        node = node.right
