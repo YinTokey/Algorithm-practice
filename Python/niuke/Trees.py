@@ -92,3 +92,64 @@ class Solution:
             realResult.append(arr)
             index += 1
         return realResult
+
+
+
+    # 生成镜像二叉树
+    def mirror(self, root):
+        if root == None:
+            return
+        if root.left != None:
+            self.mirror(root.left)
+        if root.right != None:
+            self.mirror(root.right)
+        root.left, root.right = root.right, root.left
+        return root
+
+    # 判断二叉树是否对称
+    def isSameTree(p, q):
+        if not p and not q:
+            return True
+        if p and q and p.val == q.val:
+            l = isSameTree(p.left, q.right)
+            r = isSameTree(p.right, q.left)
+            return l and r
+        else:
+            return False
+
+    def symmetry(root):
+        if root == None:
+            return True
+        else:
+            return isSameTree(root.left, root.right)
+
+    # 二叉树的下一个节点
+    # 给定一个二叉树和其中一个节点，找出中序遍历的下一个节点并返回。
+    def mid_stack(root):
+        if root == None:
+            return []
+        result = []
+        stack = []
+        node = root
+        while node or stack:
+            while node:
+                stack.append(node)
+                node = node.left
+            node = stack.pop()
+            result.append(node)
+            node = node.right
+
+
+    # 二叉搜索树与双向链表
+    # 中序遍历后，遍历排序数组，right指向下一个元素，下一个元素left指向当前
+    def Convert(pRootOfTree):
+
+         if pRootOfTree == None:
+            return
+        result = mid_stack(pRootOfTree)
+        for i, v in enumerate(result[:-1]):  # result[:-1]表示遍历到倒数第二个，防止越界，如果遍历最后一个，执行i+1就越界了
+
+            v.right = result[i + 1]
+            result[i + 1].left = v
+        return result[0]
+

@@ -103,3 +103,8 @@ def mid_stack(root):
         node = stack.pop() #到达最下面最左边
         result.append(node.val)
         node = node.right
+
+ret = ['a','b','c','d','e','f']
+for i,v in enumerate(ret):
+    print(i)
+    print(v)
