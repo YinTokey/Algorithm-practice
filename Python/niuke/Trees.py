@@ -153,3 +153,25 @@ class Solution:
             result[i + 1].left = v
         return result[0]
 
+    # 二叉搜索树的后序遍历序列
+    # 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。如果是则返回true，否则返回false。假设输入的数组的任意两个数字都互不相同。
+    # 思路：抛开写程序的舒服，手工分析。给定一个明确地数组例子，可以直接看出根节点和左右子树部分，然后对左右子树再次递归
+
+    def isBST(array,sublen):
+        if array is None or len(array) = 0:
+            return False
+        devide = 0
+        for i,v in enumerate(array[:sublen-1]):
+            if v > array[sublen-1]:
+                devide = i
+                break
+
+
+
+        left = isBST(array,devide-1)
+        right = isBST(array,devide,sublen)
+
+
+        return left and right
+
+
