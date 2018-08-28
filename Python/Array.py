@@ -30,7 +30,7 @@ def singleOne(array):
     result = 0
     for n in array:
         result ^= n
-        print(result)
+        # print(result)
     return result
 array3 = [15,2,2,3,5,1,1,5,15,8,8]
 # print(singleOne(array3))
@@ -121,9 +121,17 @@ val = 9
 # 4.9 无序数组和大于或等于某值的最小子数组
 # Given an array of **n** positive integers and a positive integer **s**,
 #  find the minimal length of a **contiguous** subarray of which the sum ≥ **s**. If there isn't one, return 0 instead.
+# 其实这题按照动态规划建表的思路也是可以做的，但是时间复杂度比较大，尝试滑动窗口, 它这里求的是子序列的长度，而不是子序列本身
+# 这题和 "和至少为K的子数组没什么差别"
+def minSubArray(nums,val):
+    if nums == None:
+        return 0
+    start,end,sum,min = 0,0,0,
 
-# def minSubArray(array,val):
 
+nums = [2,7,5,11]
+val = 14
+# print(minSubArray(nums,val))
 
-
+# 4.10 两数组的交点元素
 

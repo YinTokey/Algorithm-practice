@@ -25,6 +25,22 @@ class Solution:
             slow = slow.next
         return slow
 ```
+##### 2.反转链表
+牛客网就有分析，具体不贴了，直接贴AC代码，画个图很好理解
+```
+    def ReverseList(self, pHead):
+        if pHead == None or pHead.next == None:
+            return pHead
+        last = None
+        while pHead:
+            tmp = pHead.next
+            pHead.next = last
+            last = pHead
+            pHead = tmp
+        return last
+```
+
+
 
 
 
