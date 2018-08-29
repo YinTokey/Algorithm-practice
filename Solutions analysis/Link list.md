@@ -66,5 +66,27 @@ class Solution:
         return result
 ```
 
+##### 4.删除链表重复节点
+就是使用两个指针操作。这题很巧妙的地方在于建一个辅助空节点，指向第一个节点，这么做的目的是为了解决第一个节点就是重复节点的情况，这种情况如果不建辅助节点，那么第一个节点删不掉。
+```
+   def deleteDuplication(self, pHead):
+        if pHead == None or pHead.next == None:
+            return pHead
+        head = ListNode(0)
+        head.next = pHead
+        pre = head
+        last = head.next
+        while last:
+            if last.next != None and last.val == last.next.val:
+                while last.next != None and last.val == last.next.val:
+                    last = last.next
+                pre.next = last.next
+                last = last.next
+            else:
+                pre = pre.next
+                last = last.next
+            
+        return head.next
+        ```
 
 
