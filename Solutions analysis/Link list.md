@@ -40,7 +40,31 @@ class Solution:
         return last
 ```
 
-
+##### 3.两个链表第一个公共节点
+解析 https://www.nowcoder.com/questionTerminal/6ab1d9a29e88450685099d45c9e31e46
+核心思路就是全部入栈，然后再依次出栈对比数值，如果不一样，那么久找到了分叉点
+```
+    def FindFirstCommonNode(self, pHead1, pHead2):
+        if pHead1 == None or pHead2 == None:
+            return None
+        stack1 = []
+        stack2 = []
+        result = None
+        while pHead1:
+            stack1.append(pHead1)
+            pHead1 = pHead1.next
+        while pHead2:
+            stack2.append(pHead2)
+            pHead2 = pHead2.next
+        while stack1 and stack2:
+            top1 = stack1.pop()
+            top2 = stack2.pop()
+            if top1 == top2:
+                result = top1
+            else:
+                break
+        return result
+```
 
 
 
