@@ -5,23 +5,29 @@ class ListNode(object):
     self.next = None
 
 
-n = 15
-m = 6
 
-head = ListNode(0)
-first = head
+# -----------------
 
-for i in range(1,n):
-    listHead = ListNode(i)
-    head.next = listHead
-    head = head.next
-head.next = first
+n1 = ListNode(1)
+n2 = ListNode(2)
+n3 = ListNode(3)
+n4 = ListNode(4)
+n5 = ListNode(5)
+n6 = ListNode(6)
+n7 = ListNode(7)
+n8 = ListNode(8)
+n1.next = n2
+n2.next = n3
+n3.next = n4
+n4.next = n5
+n5.next = n6
+n6.next = n7
+n7.next = n8
+n8.next = None
 
-while first.next is not None:
-    for i in range(m-1):
-        first = first.next
-    tmp = first
-    first = first.next.next
-    tmp.next = None
+p = n1
+while p:
+    print(p.val,end="->")
+    p = p.next
 
-print(first.val)
+
