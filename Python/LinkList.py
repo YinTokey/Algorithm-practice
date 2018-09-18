@@ -4,6 +4,35 @@ class ListNode(object):
     self.val = x
     self.next = None
 
+def reverseKNode(head,k):
+    if k < 2:
+      return head
+    cur = head
+    start,pre,next = None,None,None
+    count = 1
+    while cur:
+        next = cur.next
+        if count == k:
+            start = head if pre is None else pre.next
+            head = cur if pre is None else head
+            resign(pre,start,cur,next)
+            pre = start
+            count = 0
+        count +=1
+        cur = next
+    return head
+
+
+def resign(left,start,end,right):
+    pre = start
+    cur = start.next
+    next = None
+    while cur:
+        next = cur.next
+        cur.next = pre
+        pre = cur
+        cur = next
+
 
 
 # -----------------
@@ -31,3 +60,4 @@ while p:
     p = p.next
 
 
+reverseKNode(n1,3)
