@@ -56,8 +56,29 @@ n8.next = None
 
 p = n1
 while p:
-    print(p.val,end="->")
+  #  print(p.val,end="->")
     p = p.next
 
 
-reverseKNode(n1,3)
+def quickSort(array,left,right):
+    if left > right:
+        return
+    low = left
+    hight = right
+    key = array[low]
+    while left < right:
+        while left < right and array[right] > key:
+            right -= 1
+        array[left] = array[right]
+        while left < right and array[left] <= key:
+            left += 1
+        array[right] = array[left]
+    # 调整基准数
+    array[right] = key
+    quickSort(array,low,left -1)
+    quickSort(array,left+1,hight)
+
+arr = [2,5,7,3,1,4,9]
+print(arr)
+quickSort(arr,0,len(arr)-1)
+print(arr)
