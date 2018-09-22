@@ -82,3 +82,6 @@ arr = [2,5,7,3,1,4,9]
 print(arr)
 quickSort(arr,0,len(arr)-1)
 print(arr)
+
+a = int(5)
+print(a//2)
