@@ -190,7 +190,7 @@ def levelOrderBottom(self, root):
 ```
 #### 8.之字形层次遍历二叉树
 https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/description/
-其实也是层次遍历，和上面那题一样,加个奇偶判断就可以了。
+其实也是层次遍历，和上面那题一样,加个奇偶判断就可以了。层次遍历基本都是这个套路
 ```
 def zigzagLevelOrder(self, root):
    """
@@ -205,21 +205,44 @@ def zigzagLevelOrder(self, root):
    while curr_level:
        curr_list = []
        next_list = []
-       if num % 2 == 0:
-           curr_level.reverse()
+    
        for tmp in curr_level:
            curr_list.append(tmp.val)
            if tmp.left:
                next_list.append(tmp.left)
            if tmp.right:
                next_list.append(tmp.right)
-       num += 1
+               
+       if num % 2 == 0:
+           curr_list.reverse()
        tree.append(curr_list)
        curr_level = next_list
+       num += 1
+
    return tree
 ```
+#### 9.二叉树路径总和
+https://leetcode.com/problems/path-sum/description/
+给定一棵树和一个和，判断是否存在根到叶子节点的路径，使得路径上节点总和为给定的值。必须贯穿到最下面的叶子节点。
 
-
+题目说到从根到XX节点，那肯定是优先考虑先序遍历,或者深度优先。
+然后就是二叉树题，没什么额外要求的话，优先考虑递归解决。
+```
+def hasPathSum(self, root, sum):
+   """
+   :type root: TreeNode
+   :type sum: int
+   :rtype: bool
+   """
+   if root == None:
+       return False
+   if root.left == None and root.right == None:
+       return sum == root.val
+   return self.hasPathSum(root.left,sum-root.val) or self.hasPathSum(root.right,sum-root.val)
+```
+#### 10.列举二叉树路径总和的结果
+https://leetcode.com/problems/path-sum-ii/description/
+这里需要使用嵌套函数
 
 
 
