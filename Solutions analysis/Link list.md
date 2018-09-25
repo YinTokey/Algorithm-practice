@@ -145,6 +145,35 @@ def merge(self, l, r):
     return head
 
 ```
+#### 7. 旋转链表
+https://leetcode.com/problems/rotate-list/description/
+给定一个链表，将链表向右旋转k个位置
+思路：统计长度，求余算出实际要走多少步。但是没必要真的走，构建出循环链表，指针走到要返回的节点上面，然后断开前一个节点连接，使它恢复到单向链表。最后返回那个节点即可。
+```
+def rotateRight(self, head, k):
+   """
+   :type head: ListNode
+   :type k: int
+   :rtype: ListNode
+   """
+   if head is None or head.next is None:
+       return head
+   length = 0
+   dummy = ListNode(0)
+   dummy.next = head
+   p = dummy
+   while p.next:
+       length += 1
+       p = p.next
+   step = length - (k % length)
+   p.next = dummy.next
 
+   while step > 0:
+       p = p.next
+       step -= 1
+   head = p.next
+   p.next = None
+   return head
+```
 
 
