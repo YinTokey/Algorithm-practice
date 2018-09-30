@@ -35,3 +35,19 @@ https://www.nowcoder.com/practice/3194a4f4cf814f63919d0790578d51f3?tpId=13&tqId=
         return ''.join(s)
 ```
 
+##### 字符串排列
+题目 https://www.nowcoder.com/practice/fe6b651b66ae47d7acce78ffdd9a96c7?tpId=13&tqId=11180&tPage=2&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking
+思路参考：https://blog.csdn.net/u010005281/article/details/79920046
+```
+def Permutation(self, ss):
+   list = []
+   if len(ss) <= 1:
+       return ss
+   for i in range(len(ss)):
+       for j in map(lambda x: ss[i] + x,self.Permutation(ss[:i]+ss[i+1:])):
+           if j not in list:
+               list.append(j)
+   return list
+```
+
+
