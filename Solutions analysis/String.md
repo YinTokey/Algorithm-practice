@@ -50,4 +50,33 @@ def Permutation(self, ss):
    return list
 ```
 
+##### 第一个只出现一次的字符
+因为强调第一个，又要返回它的位置。字典又是无序的，但是又想用字典的特性，所以就把数组稍微整整，假装成字典来用，满足有序性。
+
+https://www.nowcoder.com/practice/1c82e8cf713b4bbeb2a5b31cf5b0417c?tpId=13&tqId=11187&tPage=2&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking
+
+```
+    def FirstNotRepeatingChar(self, s):
+        if s == None or len(s) <= 0:
+            return -1
+        alist = list(s)
+        blist = {}
+        for i in alist:
+            if i not in blist:
+                blist[i] = 1
+            else:
+                blist[i] += 1
+        for index,i in enumerate(s):
+            if blist[i] == 1:
+                return index
+        return -1
+```
+
+##### 左旋转字符串
+直接把原字符串扩充为2倍，然后切割。
+https://www.nowcoder.com/practice/12d959b108cb42b1ab72cef4d36af5ec?tpId=13&tqId=11196&tPage=3&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking
+
+```
+
+```
 
