@@ -23,14 +23,14 @@ https://www.nowcoder.com/practice/3194a4f4cf814f63919d0790578d51f3?tpId=13&tqId=
         self.reverse(s,0,len(s)-1)
         start,end = 0,0
         while start < len(s):
-            if s[start] == ' ':
+            if s[start] == ' ': # 首位空
                 start +=1
                 end += 1
-            elif end == len(s) or s[end] == ' ':
+            elif end == len(s) or s[end] == ' ': #到达翻转节点
                 self.reverse(s,start,end -1)
                 end +=1
                 start = end
-            else:
+            else:  #常规移动
                 end += 1
         return ''.join(s)
 ```
@@ -78,5 +78,31 @@ https://www.nowcoder.com/practice/12d959b108cb42b1ab72cef4d36af5ec?tpId=13&tqId=
 
 ```
 
+```
+
+##### 字符串转换成整数
+https://www.nowcoder.com/practice/1277c681251b4372bdef344468e4f26e?tpId=13&tqId=11202&tPage=3&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking
+
+思路就是构建字典，然后做合法性匹配。
+
+```
+    def StrToInt(self, s):
+        if not s:
+            return 0
+        num = []
+        numbers = {'1':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9}
+        for i in s:
+            if i in numbers.keys():
+                num.append(numbers[i])
+            elif i == '-' or i == '+':
+                continue
+            else:
+                return 0
+        ans = 0
+        for j in num:
+            ans = ans * 10 + j
+        if s[0] == '-':
+            ans = 0 - ans
+        return ans
 ```
 
