@@ -85,3 +85,8 @@ print(arr)
 
 a = int(5)
 print(a//2)
+
+a = "1fGH980"
+list = [i.lower() for i in a]
+print(list)
+

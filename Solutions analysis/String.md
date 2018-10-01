@@ -106,3 +106,44 @@ https://www.nowcoder.com/practice/1277c681251b4372bdef344468e4f26e?tpId=13&tqId=
         return ans
 ```
 
+##### 表示数值的字符串
+这题没有那么难，只要对合法性条件做充分考虑就可以了。
+https://www.nowcoder.com/practice/6f8c901d091949a5837e24bb82a731f2?tpId=13&tqId=11206&tPage=3&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking
+
+合法性条件有哪些？
+以e为界，e后面不能有.或者为空。然后利用数组切片把e的前后两部分放到一个判断函数里。
+在判断函数内部，+- 不能出现在首位。字符串里面的 . 不能出现超过1次。
+
+总和上面条件，就可以对字符串的合法性做处理了。
+```
+    def isNumeric(self, s):
+        if not s:
+            return False
+        alist = [i.lower() for i in s]
+        if 'e' in alist:
+            index = alist.index('e')
+            front = alist[:index]
+            behind = alist[index+1:]
+            if '.' in behind or len(behind) == 0:
+                return False
+            return self.Digit(front) and self.Digit(behind)
+            
+        else:
+            return self.Digit(alist)
+        
+        
+    def Digit(self,alist):
+        dotnum = 0
+        allownum = ['0','1','2','3','4','5','6','7','8','9','+','-','.']
+        for i in range(len(alist)):
+            if alist[i] not in allownum:
+                return False
+            if alist[i] == '.':
+                dotnum += 1
+            if alist[i] in '+-' and i != 0:
+                return False
+        if dotnum > 1:
+            return False
+        return True
+```
+
