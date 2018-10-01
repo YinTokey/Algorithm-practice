@@ -147,3 +147,33 @@ https://www.nowcoder.com/practice/6f8c901d091949a5837e24bb82a731f2?tpId=13&tqId=
         return True
 ```
 
+#### 字符流中第一个不重复的字符
+原题：
+https://www.nowcoder.com/practice/00de97733b8e4f97a3fb5c680ee10720?tpId=13&tqId=11207&tPage=3&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking
+
+好好理解一下这个思路，写起来并不难
+
+https://github.com/leeguandong/Interview-code-practice-python/blob/master/%E5%89%91%E6%8C%87offer/%E5%AD%97%E7%AC%A6%E6%B5%81%E4%B8%AD%E7%AC%AC%E4%B8%80%E4%B8%AA%E4%B8%8D%E9%87%8D%E5%A4%8D%E7%9A%84%E5%AD%97%E7%AC%A6.py
+
+```
+    def __init__(self):
+        self.alist = []
+        self.adict = {}
+    # 返回对应char
+    def FirstAppearingOnce(self):
+        while len(self.alist) > 0 and self.adict[self.alist[0]] == 2:
+            self.alist.pop(0)
+        if len(self.alist) == 0:
+            return '#'
+        else:
+            return self.alist[0]
+        
+    def Insert(self, char):
+        if char not in self.adict.keys():
+            self.adict[char] = 1
+            self.alist.append(char)
+        else:
+            self.adict[char] = 2
+```
+
+
