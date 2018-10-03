@@ -126,7 +126,31 @@ top k 其实和选择排序的思路是一样的，可以使用选择排序。�
             if count >= k:
                 break
         return tinput[:k]
+        
 ```
+
+##### 连续子数组最大和
+https://www.nowcoder.com/practice/459bd355da1549fa8a49e350bf3df484?tpId=13&tqId=11183&tPage=2&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking
+
+一定要记得一个隐藏条件：所求和的最小值是0，计算应该是以0位分节点。即使整个数组都是负数，空数组也可以作为它的子数组，和位0。记住这点，分析就比较容易了。它只要求值，不要求子数组，所以不用考虑滑动窗口或者动态规划。
+
+这里采用的思路是用一个数值sum存储当前和，一个result用来保存最大值。
+```
+        if array == None or len(array) == 0:
+            return 0
+        result = array[0]
+        sum = 0
+        for i in range(len(array)):
+            if sum <= 0:
+                sum = array[i]
+            else:
+                sum += array[i]
+            if sum > result:
+                result = sum
+        return result
+```
+
+
 
 
 
