@@ -40,6 +40,29 @@ class Solution:
         return ret            
 ```
 
+##### 旋转数组的最小数字
+https://www.nowcoder.com/practice/9f3231a991af4f55b95579b44b7a01ba?tpId=13&tqId=11159&tPage=1&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking
 
+题目说的有点模糊，本质是查找数组中最小的数字。由于是旋转数组，只要找到分割点，把数组分割成两部分，那么这两部分是有序的。并且它是左选择，最小数字存在于分割点左边。
+
+```
+    def minNumberInRotateArray(self, rotateArray):
+        if len(rotateArray) == 0:
+            return 0
+        elif len(rotateArray) == 1:
+            return rotateArray[0]
+        else:
+            low = 0
+            high = len(rotateArray) - 1
+            while low < high:
+                mid = int((low + high)/2)
+                if rotateArray[mid] < rotateArray[high]:
+                    high = mid
+                elif rotateArray[mid] > rotateArray[high]:
+                    low = mid+1
+                else:
+                    high = high - 1
+            return rotateArray[high]
+```
 
 

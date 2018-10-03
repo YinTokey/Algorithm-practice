@@ -147,7 +147,7 @@ https://www.nowcoder.com/practice/6f8c901d091949a5837e24bb82a731f2?tpId=13&tqId=
         return True
 ```
 
-#### 字符流中第一个不重复的字符
+##### 字符流中第一个不重复的字符
 原题：
 https://www.nowcoder.com/practice/00de97733b8e4f97a3fb5c680ee10720?tpId=13&tqId=11207&tPage=3&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking
 
@@ -175,5 +175,31 @@ https://github.com/leeguandong/Interview-code-practice-python/blob/master/%E5%89
         else:
             self.adict[char] = 2
 ```
+##### 罗马数字转整数
+原题：
+https://leetcode.com/problems/roman-to-integer/description/
 
+思路是反向遍历，除了最后一个以外，其他位如果前一位大于后一位，就累加，如果小于后一位，就减它
+
+```
+    def romanToInt(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        if not s:
+            return 0
+        
+        dict = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
+        result = 0
+        for i in range(len(s)-1,-1,-1):
+            if i!= len(s)-1:
+                if dict[s[i]] < dict[s[i+1]]:
+                    result -= dict[s[i]]
+                else:
+                    result += dict[s[i]]
+            else:
+                result += dict[s[i]]
+        return result
+```
 
