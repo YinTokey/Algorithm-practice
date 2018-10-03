@@ -83,3 +83,50 @@ https://www.nowcoder.com/practice/beb5aa231adc45b2a5dcc5b62c93f593?tpId=13&tqId=
         return res1+res2
 ```
 
+##### 顺时针打印矩阵
+https://www.nowcoder.com/practice/9b4c81a02cd34f76be2659fa0d54342a?tpId=13&tqId=11172&tPage=1&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking
+
+模拟魔方旋转，打印第一行，然后切掉，逆时针旋转90度。一直循环。
+
+```
+
+```
+
+
+##### top k 问题
+比如最小K个数
+
+使用heapq来快速进行堆操作。如果不想走捷径的话，可以使用快排，或者更加粗暴的冒泡排序
+```
+    def GetLeastNumbers_Solution(self, tinput, k):
+        import heapq
+        if tinput == None or len(tinput) < k or len(tinput) <= 0 or k <= 0:
+            return []
+
+        # 建立最小堆，最上面那个数是最小的，返回一个列表，这个列表就是从最小值开始的k个数
+        return heapq.nsmallest(k, tinput)
+```
+
+top k 其实和选择排序的思路是一样的，可以使用选择排序。相对来说没有那种作弊的感觉。
+
+```
+    def GetLeastNumbers_Solution(self, tinput, k):
+        res = []
+        n = len(tinput)
+        if k > n:
+            return res
+        count = 0
+        for j in range(0,n-1):
+            minIndex = j
+            for i in range(j+1,n):
+                if tinput[minIndex] > tinput[i]:
+                    minIndex = i
+            count +=1
+            tinput[minIndex],tinput[j] = tinput[j],tinput[minIndex]
+            if count >= k:
+                break
+        return tinput[:k]
+```
+
+
+
