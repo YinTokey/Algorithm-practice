@@ -65,4 +65,21 @@ https://www.nowcoder.com/practice/9f3231a991af4f55b95579b44b7a01ba?tpId=13&tqId=
             return rotateArray[high]
 ```
 
+##### 调整数组顺序，使得奇数位于偶数前面
+https://www.nowcoder.com/practice/beb5aa231adc45b2a5dcc5b62c93f593?tpId=13&tqId=11166&tPage=1&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking
+
+这种题直接开两个数组解决。
+
+
+```
+    def reOrderArray(self, array):
+        res1 = []
+        res2 = []
+        for i in array:
+            if i % 2 == 0:
+                res2.append(i)
+            else:
+                res1.append(i)
+        return res1+res2
+```
 
