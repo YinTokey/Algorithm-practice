@@ -78,15 +78,47 @@ def quickSort(array,left,right):
     quickSort(array,low,left -1)
     quickSort(array,left+1,hight)
 
+
+def bubbleSort(list):
+    length = len(list)
+    # 第一级遍历
+
+    for index in range(length):
+        # 第二级遍历
+        flag = True
+        for j in range(1, length - index):
+            if list[j - 1] > list[j]:
+                # 交换两者数据，这里没用temp是因为python 特性元组。
+                list[j - 1], list[j] = list[j], list[j - 1]
+                flag = False
+        if flag:
+            return
+
+def selectionSort(list):
+    n = len(list)
+    for i in range(n):
+        min = i
+        for j in range(i+1,n):
+            if list[j]<list[min]:
+                min = j
+                list[min],list[i] = list[i],list[min]
+    return list
+
 arr = [2,5,7,3,1,4,9]
 print(arr)
-quickSort(arr,0,len(arr)-1)
+#quickSort(arr,0,len(arr)-1)
+bubbleSort(arr)
+#selectionSort(arr)
 print(arr)
 
+
+
+
+
 a = int(5)
-print(a//2)
+# print(a//2)
 
 a = "1fGH980"
 list = [i.lower() for i in a]
-print(list)
+# print(list)
 

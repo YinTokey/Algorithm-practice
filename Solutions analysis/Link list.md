@@ -90,18 +90,7 @@ class Solution:
 ```
 
 
-##### 5.将单链表的每k个节点之间逆序
-左程云书  p68
-注意：如果最后不够k节点一组，则不调整最后几个几点
-1->2->3->4->5->6->7->8->null
-调整后 3->2->1->6->5->4->7->8->null
-**方法一**
-使用数组或者栈结构，每k个节点入栈，然后倒过来，但是需要额外O(n)的空间。算是链表题的万金油套路之一。
-**方法二**
-链表题最好策略的一般是使用辅助指针，原地处理。时间复杂度O(N),空间复杂度 O(1)
-
-
-##### 6.单链表排序
+##### 5.单链表排序
 要求常数级空间复杂度
 https://leetcode.com/problems/sort-list/discuss/46711/Python-merge-sort-with-comments.
 ```
@@ -145,7 +134,7 @@ def merge(self, l, r):
     return head
 
 ```
-#### 7. 旋转链表
+##### 6. 旋转链表
 https://leetcode.com/problems/rotate-list/description/
 给定一个链表，将链表向右旋转k个位置
 思路：统计长度，求余算出实际要走多少步。但是没必要真的走，构建出循环链表，指针走到要返回的节点上面，然后断开前一个节点连接，使它恢复到单向链表。最后返回那个节点即可。
@@ -174,6 +163,27 @@ def rotateRight(self, head, k):
    head = p.next
    p.next = None
    return head
+```
+
+##### 7. 倒数第K个节点
+经典的双指针解决方案
+https://www.nowcoder.com/practice/529d3ae5a407492994ad2a246518148a?tpId=13&tqId=11167&tPage=1&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking
+```
+    def FindKthToTail(self, head, k):
+        if head == None or k < 1:
+            return None
+        ptr1 = head
+        ptr2 = head
+        while k > 1:
+            if ptr1.next != None:
+                ptr1 = ptr1.next
+                k -= 1
+            else:
+                return None
+        while ptr1.next:
+            ptr1 = ptr1.next
+            ptr2 = ptr2.next
+        return ptr2
 ```
 
 
