@@ -92,7 +92,34 @@ let coffee = builder.buildObject(name: "10A")
 
 /*
  =====================================================
+ 结构型
+ */
 
+/*
+ 适配器模式Adaper，将一个类不兼容的接口，转换为另一个类兼容的接口，常用于旧代码的复用. 连接结构如  A类 --- 适配器 --- B类
+ 比如下面例子   Target -- Adapter -- Adaptee
+ */
+protocol Target {
+    var value: String { get }
+}
+
+struct Adapter: Target {
+    let adaptee: Adaptee
+    var value: String {
+        return "\(adaptee.value)"
+    }
+    init(_ adaptee: Adaptee) {
+        self.adaptee = adaptee
+    }
+}
+
+struct Adaptee {
+    var value: Int
+}
+
+
+/*
+ 桥接模式
  */
 
 
