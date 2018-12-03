@@ -184,5 +184,71 @@ Milk(Sugar(Coffee(cost:19))).cost
 
 /*
  责任链模式
- 避免请求发送者和接受者耦合在一起，让多个对象都可以接受请求，最典型的就是iOS的响应链
+ 避免请求发送者和接受者耦合在一起，让多个对象都可以接受请求，这些对象连成一条链，请求沿着这条链传递，直到有对象处理它为止。最典型的就是iOS的响应链
  */
+
+
+
+/*
+ 命令模式
+ 将请求封装成对象。最典型的就是 RACCommand,  RxSwift的 Action
+ */
+protocol Command{
+    var operation:()->() {get}
+    var backup:String {get}
+    func undo()
+    
+}
+
+struct ConcreteCommand:Command{
+    var backup: String
+    var operation: () -> ()
+    func undo() {
+        print(backup)
+    }
+}
+
+/*
+ 迭代器模式
+ 提供一种方法顺序访问一个集合内的元素，但是又不暴露具体实现，比如数组字典的 Block 迭代模式
+ */
+protocol AbstractIterator {
+    func hasNext() -> Bool
+    func next() -> Int
+}
+
+class ConcreteIterator: AbstractIterator {
+    private var currentIndex = 0
+    var elements:[Int] = []
+    
+    func hasNext() -> Bool {
+        
+    }
+    
+    func next() -> Int {
+        
+    }
+}
+
+protocol AbstractCollection {
+    func makeIterator() -> AbstractIterator
+}
+
+class ConcreteCollection:AbstractCollection{
+    let iterator = ConcreteIterator()
+    func makeIterator() -> AbstractIterator {
+        return iterator
+    }
+    
+    func add(_ e:Int){
+        iterator.elements.append(e)
+    }
+}
+
+let c = ConcreteCollection()
+
+let iterator = c.makeIterator()
+while iterator.hasNext(){
+    print(iterator.next())
+}
+
