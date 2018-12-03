@@ -174,6 +174,17 @@ struct Milk:Decorator {
 
 Milk(Sugar(Coffee(cost:19))).cost
 
+/*
+ 享元模式
+ 运用共享技术有效支持大量细粒度对象,就是一套缓存系统. SDWebImage中的缓存设计，就有涉及享元模式
+ */
+
+/*
+ 代理模式
+ 这个没啥好说的了。。
+ */
+
+
 
 /*
  行为型
@@ -252,3 +263,65 @@ while iterator.hasNext(){
     print(iterator.next())
 }
 
+/*
+ 中介者模式
+ 用一个中介对象封装一些列对象之间的交互，中介者使得各个对象之间不相互直接引用，从而起到解耦的作用，比如组件化方案中的Mediator
+ */
+
+
+/*
+ 备忘录模式
+ 在不破坏封装性的前提下，捕获一个对象的内部状态，并在对象之外保存这个状态。比如 iOS 中的归档解档
+ */
+
+
+/*
+ 观察者模式
+ 定义对象间一对多的关系,当一个对象发送改变时，依赖它的对象会得到通知与更新。比如KVO,RxSwift
+ */
+
+
+/*
+ 状态模式
+ 允许对象在内部状态发生改变时改变它的行为，对象看起来好像修改了它的类。
+ 更通俗的解释就是 当一个对象的状态不一样的时候，它调用同一个方法会产生不同的结果。
+ */
+protocol State{
+    func operation()
+}
+
+class ConcreteStateA:State{
+    func operation() {
+        print("A")
+    }
+}
+
+class ConcreteStateB:State{
+    func operation() {
+        print("B")
+    }
+}
+
+class Context{
+    var state:State = ConcreteStateA()
+    func doSomething(){
+        state.operation()
+    }
+}
+
+let ct = Context()
+ct.doSomething()
+ct.state = ConcreteStateB()
+ct.doSomething()
+
+/*
+ 策略模式
+ 就行不同的地图交通路线，可以相互替换，最终都能到达目的地。
+ 定义一系列算法，把他们都封装起来，并且可以相互替换。
+ */
+
+
+/*
+ 模板方法模式
+ 在抽象类中声明方法，在子类中具体实现。比如NSOperation是抽象类，使用的时候一般使用它的子类
+ */
