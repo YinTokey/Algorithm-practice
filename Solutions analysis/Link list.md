@@ -13,7 +13,7 @@ class Solution:
         slow = pHead.next
         # 第一个循环判断是否有环
         while fast != slow:
-            if fast.next is not None and fast.next.next is not None:
+            if fast.next != None and fast.next.next != None:
                 fast = fast.next.next
                 slow = slow.next
             else:
@@ -26,7 +26,7 @@ class Solution:
         return slow
 ```
 ##### 2.反转链表
-牛客网就有分析，具体不贴了，直接贴AC代码，画个图很好理解
+牛客网就有分析，具体不贴了，直接贴AC代码，画个图很好理解。总结一下就是temp保存next,指向last,
 ```
     def ReverseList(self, pHead):
         if pHead == None or pHead.next == None:
@@ -186,7 +186,27 @@ https://www.nowcoder.com/practice/529d3ae5a407492994ad2a246518148a?tpId=13&tqId=
         return ptr2
 ```
 
-
+##### 8.合并两个排序链表
+基本没难度
+```
+    def Merge(self, pHead1, pHead2):
+        dummy = ListNode(0)
+        head = dummy
+        while pHead1 and pHead2:
+            if pHead1.val >= pHead2.val:
+                dummy.next = pHead2
+                pHead2 = pHead2.next
+            else:
+                dummy.next = pHead1
+                pHead1 = pHead1.next
+            dummy = dummy.next
+        if pHead1:
+            dummy.next = pHead1
+        if pHead2:
+            dummy.next = pHead2
+            
+        return head.next
+```
 
 
 
