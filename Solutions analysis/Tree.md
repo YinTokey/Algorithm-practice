@@ -245,4 +245,32 @@ https://leetcode.com/problems/path-sum-ii/description/
 这里需要使用嵌套函数
 
 
+#### 11.二叉树的下一个节点
+https://www.nowcoder.com/practice/9023a0c988684a53960365b889ceaf5e?tpId=13&tqId=11210&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
+这题分三个步骤，首先是通过next找到根节点，然后进行中序遍历，最后找到目标节点的下一个节点。
+```
+def GetNext(self, pNode):
+        dummy = pNode
+        while dummy.next:
+            dummy = dummy.next
+        #找到根节点
+        self.result = []
+        #中序遍历
+        self.midReverse(dummy)
+        #条件检查，输出目标节点
+        if self.result.index(pNode) != len(self.result) -1:
+            pIndex = self.result.index(pNode)
+            return self.result[pIndex+1]
+        else:
+            return None
+        
+    def midReverse(self,node):
+        if node == None:
+            return 
+        self.midReverse(node.left)
+        self.result.append(node)
+        self.midReverse(node.right)
+```
+
+
 
