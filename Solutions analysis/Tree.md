@@ -271,6 +271,27 @@ def GetNext(self, pNode):
         self.result.append(node)
         self.midReverse(node.right)
 ```
+#### 判读对称二叉树（镜像）
+https://www.nowcoder.com/practice/ff05d44dfdb04e1d83bdbdab320efbcb?tpId=13&tqId=11211&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
+主要思路就是递归遍历二叉树的左右子树
+```
+    def isSymmetrical(self, pRoot):
+        # write code here
+        def isSameTree(p, q):
+            if q == None and p == None:
+                return True
+            if q and p and q.val == p.val:
+                l = isSameTree(p.left,q.right)
+                r = isSameTree(q.left,p.right)
+                return l and r
+            else:
+                return False
+            
+        if pRoot == None:
+            return True
+        else:
+            return isSameTree(pRoot.left,pRoot.right)
+```
 
 
 
