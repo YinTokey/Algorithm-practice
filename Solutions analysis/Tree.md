@@ -28,17 +28,17 @@ def front_recursive(self,root):
 	self.front_recursive(root.rchild)
 
 def front_stack(self,root):
-	if root == None:
-		return
-	stack = []
-	result = []
-	node = root
-	while node or stack:
-		while node:
-			result.append(node.elem)
-			stack.append(node)
-		node = stack.pop()
-		node = node.right
+   if root == None:
+       return []
+   stack,result = [],[]
+   while root or stack:
+       while root:
+           result.append(root.val)
+           stack.append(root)
+           root = root.left
+       root = stack.pop()
+       root = root.right
+   return result
 
 
 def mid_recursive(self,root):
@@ -271,7 +271,7 @@ def GetNext(self, pNode):
         self.result.append(node)
         self.midReverse(node.right)
 ```
-#### 判读对称二叉树（镜像）
+#### 12.判读对称二叉树（镜像）
 https://www.nowcoder.com/practice/ff05d44dfdb04e1d83bdbdab320efbcb?tpId=13&tqId=11211&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
 主要思路就是递归遍历二叉树的左右子树
 ```
@@ -292,6 +292,157 @@ https://www.nowcoder.com/practice/ff05d44dfdb04e1d83bdbdab320efbcb?tpId=13&tqId=
         else:
             return isSameTree(pRoot.left,pRoot.right)
 ```
+#### 12.X 相似题，判断二叉树是否相同
+使用递归
+```
+    def isSameTree(self, p, q):
+        """
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: bool
+        """
+        if p == None and q == None:
+            return True
+        if p and q and p.val == q.val:
+            l = self.isSameTree(p.left,q.left)
+            r = self.isSameTree(p.right,q.right)
+            return l and r
+        else:
+            return False
+```
+
+#### 13.层次输出二叉树
+https://www.nowcoder.com/practice/445c44d982d04483b04a54f298796288?tpId=13&tqId=11213&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
+这个其实是层次遍历二叉树的升级版，主要是构造两个栈来辅助
+```
+   def isSameTree(self, p, q):
+        """
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: bool
+        """
+        if p == None and q == None:
+            return True
+        if p and q and p.val == q.val:
+            l = self.isSameTree(p.left,q.left)
+            r = self.isSameTree(p.right,q.right)
+            return l and r
+        else:
+            return False
+```
+#### 14.序列化二叉树
+https://www.nowcoder.com/practice/cf7e25aa97c04cc1a68c8f040e71fb84?tpId=13&tqId=11214&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
+算法思路:
+序列化就是将节点值转成字符串，逗号隔开，空白节点用 # 代替。使用前序遍历
+```
+     def Serialize(self, root):
+        if not root:
+            return '#'
+        return str(root.val) + ',' + self.Serialize(root.left) + ',' + self.Serialize(root.right)
+     def Deserialize(self, s):
+        list = s.split(',')
+        return self.deserializeTree(list)
+     def deserializeTree(self,list):
+        if len(list) <= 0:
+            return None
+        val = list.pop(0)
+        root = None
+        if val != '#':
+            root = TreeNode(int(val))
+            root.left = self.deserializeTree(list)
+            root.right = self.deserializeTree(list)
+        return root
+```
+#### 15.二叉搜索树第K个节点
+https://www.nowcoder.com/practice/ef068f602dde4d28aab2b210e859150a?tpId=13&tqId=11215&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
+中序遍历搞定，注意判断条件即可。
+```
+# 返回对应节点TreeNode
+    def KthNode(self, pRoot, k):
+        self.result = []
+        self.mid(pRoot)
+        if 0<k<=len(self.result):
+            return self.result[k-1]
+        else:
+            return None
+    
+    def mid(self,root):
+        if root == None:
+            return 
+        self.mid(root.left)
+        self.result.append(root)
+        self.mid(root.right)
+```
+
+#### 16.翻转二叉树
+https://leetcode.com/problems/invert-binary-tree/
+经典的翻转二叉树，提供递归和非递归两种解法
+```
+    def invertTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: TreeNode
+        """
+        if root == None:
+            return None
+        root.left,root.right = self.invertTree(root.right),self.invertTree(root.left)
+
+        return root
+```
+```
+        if root == None:
+            return None
+        queue = []
+        queue.append(root)
+        while queue:
+            node = queue.pop(0)
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+            node.left,node.right = node.right,node.left
+        return root
+```
 
 
+```
+fast = head.next
+slow = head
+while fast:
+	fast = fast.next.next
+	slow = slow.next
+
+pHead = head
+last = None
+while pHead.val != slow.val
+	temp = pHead.next
+	pHead.next = last
+	last = pHead
+	pHead = temp
+
+```
+
+```
+def shift_down(arr,start,end):
+	root = start
+	while True:
+		child = 2 * root + 1
+		if child > end:
+			return 
+		if child+1 <= end and arr[child] < arr[child+1]:
+			child +=1
+		if arr[root] < arr[child]:
+			arr[root],arr[child] = arr[root],arr[child]
+			root = child
+		else:
+		   break
+
+def heapSort(arr):
+	firt = len(arr) // 2 - 1
+	for start in range(first,-1,-1):
+		shift_down(arr,start,len(arr)-1)
+	for end in range(len(arr)-1,0,-1):
+	   shift_down(arr,0,end-1)
+	return arr
+```
 
