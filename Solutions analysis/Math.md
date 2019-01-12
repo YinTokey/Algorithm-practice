@@ -64,4 +64,12 @@ https://blog.csdn.net/fuxuemingzhu/article/details/79702017
         return zeros >= gaps
 ```
 
+##### 回文数判断
+https://leetcode.com/problems/palindrome-number/discuss/5188/O(1)-space-O(lgn)-time-java-solution-no-overflow-risk
+
+使用O(1)空间复杂度来解决。其实翻转整数，也可以是这个思路。
+
+其实这类题目，要求O(1)空间复杂度的，有两种解决思路：1.利用指针标志   2.做积累性数学运算
+
+这题就是做积累性运算
 
