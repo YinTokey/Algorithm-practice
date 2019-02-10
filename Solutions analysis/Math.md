@@ -72,4 +72,21 @@ https://leetcode.com/problems/palindrome-number/discuss/5188/O(1)-space-O(lgn)-t
 其实这类题目，要求O(1)空间复杂度的，有两种解决思路：1.利用指针标志   2.做积累性数学运算
 
 这题就是做积累性运算
+```
+    def isPalindrome(self, x):
+        """
+        :type x: int
+        :rtype: bool
+        """
+        # 拆开，转成数组，检查回文数组即可
+        
+        # 来一波O(1)空间复杂度解法
+        p = x
+        q = 0
+        while p > 0:
+            q = q*10 + p%10
+            p /=10
+            
+        return q == x
+```
 

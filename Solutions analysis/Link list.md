@@ -66,6 +66,38 @@ class Solution:
         return result
 ```
 
+**解法2**
+统计两个链表的长度，以及二者的差值。假设差值为N，那么长的那条先走N步，然后再一起走，一旦发现相同，就是第一个公共节点。这种方式可以达到空间复杂度O(n)
+```
+    def FindFirstCommonNode(self, pHead1, pHead2):
+        if pHead1 == None or pHead2 == None:
+            return None
+        length1,length2,step = 0,0,0
+        p1,p2 = pHead1,pHead2
+        while p1:
+            length1 +=1
+            p1 = p1.next
+        while p2:
+            length2 +=1
+            p2 = p2.next
+        step = abs(length2-length1)
+        if length2 > length1:
+            while step != 0:
+                step -= 1
+                pHead2 = pHead2.next
+        else:
+            while step != 0:
+                step -= 1
+                pHead1 = pHead1.next
+        while pHead1 and pHead2:
+            if pHead1.val == pHead2.val:
+                return pHead1
+            pHead1 = pHead1.next
+            pHead2 = pHead2.next
+        return None
+```
+
+
 ##### 4.删除链表重复节点
 就是使用两个指针操作。这题很巧妙的地方在于建一个辅助空节点，指向第一个节点，这么做的目的是为了解决第一个节点就是重复节点的情况，这种情况如果不建辅助节点，那么第一个节点删不掉。
 ```

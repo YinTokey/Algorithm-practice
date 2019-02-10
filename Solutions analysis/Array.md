@@ -149,7 +149,12 @@ https://www.nowcoder.com/practice/459bd355da1549fa8a49e350bf3df484?tpId=13&tqId=
                 result = sum
         return result
 ```
+##### 数组中重复的数字
+https://www.nowcoder.com/practice/623a5ac0ea5b4e5f95552655361ae0a8?tpId=13&tqId=11203&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
 
+###### tip1 如果可以修改元素
+https://blog.csdn.net/u010579068/article/details/49514745
+按照这个排序思路，时间复杂度O(n),空间复杂度O(1)
 
 
 
