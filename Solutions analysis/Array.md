@@ -82,6 +82,21 @@ https://www.nowcoder.com/practice/beb5aa231adc45b2a5dcc5b62c93f593?tpId=13&tqId=
                 res1.append(i)
         return res1+res2
 ```
+**O(n)空间复杂度**：
+如果可以修改数组，且相对位置可以改变，那么使用快排的思路，可以达到常数级复杂度。
+```
+def reOrderArray(self, array):
+    left = 0
+    right = len(array)-1
+    while left < right:
+        while left < right and array[right]%2 == 0:
+            right -=1
+        while left < right and array[left]%2 != 0:
+            left += 1
+        array[left],array[right]=array[right],array[left]
+    return array
+
+```
 
 ##### 顺时针打印矩阵
 https://www.nowcoder.com/practice/9b4c81a02cd34f76be2659fa0d54342a?tpId=13&tqId=11172&tPage=1&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking
