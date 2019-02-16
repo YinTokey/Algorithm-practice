@@ -164,6 +164,28 @@ https://www.nowcoder.com/practice/459bd355da1549fa8a49e350bf3df484?tpId=13&tqId=
                 result = sum
         return result
 ```
+
+其实也可以求子数组的，就是在`sum <= 0`进行值更新的时候，记录下标first,last,然后进行数组切片.
+```
+def findSub(array):
+    if array == None or len(array) == 0:
+        return 0
+    result = array[0]
+    sum = 0
+    first,last = 0,0
+    for i in range(len(array)):
+        if sum <= 0:
+            sum = array[i]
+            first = i
+        else:
+            sum += array[i]
+        if sum > result:
+            result = sum
+            last = i
+    return result
+
+```
+
 ##### 数组中重复的数字
 https://www.nowcoder.com/practice/623a5ac0ea5b4e5f95552655361ae0a8?tpId=13&tqId=11203&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
 
