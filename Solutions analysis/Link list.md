@@ -240,6 +240,19 @@ https://www.nowcoder.com/practice/529d3ae5a407492994ad2a246518148a?tpId=13&tqId=
         return head.next
 ```
 
+##### 9 合并多个排序链表
+上一题的升级版
+https://leetcode.com/problems/merge-k-sorted-lists/
+
+def mergeLists(lists):
+	if not lists:
+		return None
+	if len(lists) == 1:
+		return lists[0]
+	mid = len(lists)//2
+	left = mergeList(lists[:mid])
+	right = mergeList(lists[mid:])
+	return merge(left,right)
 
 
 
