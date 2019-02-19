@@ -242,6 +242,7 @@ https://www.nowcoder.com/practice/529d3ae5a407492994ad2a246518148a?tpId=13&tqId=
 
 ##### 9 合并多个排序链表
 上一题的升级版
+```
 https://leetcode.com/problems/merge-k-sorted-lists/
 
 def mergeLists(lists):
@@ -253,7 +254,33 @@ def mergeLists(lists):
 	left = mergeList(lists[:mid])
 	right = mergeList(lists[mid:])
 	return merge(left,right)
+```
 
+##### 10 实现memcpy
+```
+void *memcpy(void *dest,const void *src,size_t n)
+{
+	char *d;
+	const char *s;
+	if(dest > (src+count) || dest < src)
+	{
+		d = dest
+		s = src
+		while(n--){
+			*d ++ = *s++;
+		}
+	}
+	else//内存重叠
+	{
+		d = char*(dest+count-1)
+		s = char*(src+count-1)
+		while(n--){
+			*d-- = *s--;
+		}
+	}
+	return d
 
+}
+```
 
 

@@ -203,3 +203,10 @@ https://leetcode.com/problems/roman-to-integer/description/
         return result
 ```
 
+##### 最长不重复子序列
+https://leetcode.com/problems/longest-substring-without-repeating-characters/submissions/
+参考思路
+https://blog.csdn.net/yurenguowang/article/details/77839381
+
+时间和空间复杂度都为O(n)
+

@@ -90,3 +90,23 @@ https://leetcode.com/problems/palindrome-number/discuss/5188/O(1)-space-O(lgn)-t
         return q == x
 ```
 
+##### 求三个数中位数
+```
+def middle(a,b,c):
+    max = a
+    min = a
+    if b < min:
+        min = b
+    else:
+        max = b
+    if c < min:
+        min = c
+    elif c > max:
+        max = c
+    else:
+        print("min<c<max")
+
+    return a+b+c-max-min
+
+```
+
