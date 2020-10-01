@@ -40,21 +40,40 @@ class Solution:
         return last
 ```
 
-go语言的解法，和上面差不多，更容易理解点。 循环里面只考虑两个结点交换
-```
-  if head == nil || head.Next == nil {
-        return head.Val
+go语言的解法，和上面差不多```
+func reverseList(head *ListNode) *ListNode {
+    if head == nil || head.Next == nil {
+        return head
     }
 
     var prev *ListNode
-    cur := head
-    for cur != nil {
-        cur.Next = prev
-        prev = cur
-        cur = cur.Next
+    for head != nil {
+        tmp := head.Next
+        head.Next = prev
+        prev = head
+        head = tmp
     }
- 
- return cur
+
+    return prev
+}
+```
+再补一个递归法，时间 空间 复杂度都为O(n)，因为递归用到栈，最大O（n）
+
+思路：假设head后面的部分已经被翻转了，head的下一个节点必须反过来指向它，head自己的next先断开。
+即 head.Next.Next = head ,   head.Next = nil
+
+```
+func reverseList(head *ListNode) *ListNode {
+    if head == nil || head.Next == nil {
+        return head
+    }
+
+    var p *ListNode = reverseList(head.Next)
+    head.Next.Next = head
+    head.Next = nil
+
+    return p
+}
 
 ```
 
@@ -300,5 +319,14 @@ void *memcpy(void *dest,const void *src,size_t n)
 
 }
 ```
+
+##### 有序链表转二叉搜索树
+给定一个单链表，其中的元素按升序排序，将其转换为高度平衡的二叉搜索树
+
+如果有数组就好办，类似这题https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/description/
+
+这里虽然可以构建有序数组，但是会增加额空间O(n)。如果不适应数组，那么可以每次都遍历链表，找到中间节点，然后递归构建。时间复杂度O(nLogn)
+
+
 
 
