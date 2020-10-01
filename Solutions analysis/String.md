@@ -210,3 +210,8 @@ https://blog.csdn.net/yurenguowang/article/details/77839381
 
 时间和空间复杂度都为O(n)
 
+##### Implement strStr()
+leetcode 28 题， 字符串匹配。
+最简单的解法是，遍历第一个字符串，使用字典存储索引。再次遍历第二个字符串，使用字典键值对做对比。但是这样做会有O(n)的空间复杂度。这里其实考察的是KMP算法。
+
+

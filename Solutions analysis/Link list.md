@@ -40,6 +40,24 @@ class Solution:
         return last
 ```
 
+go语言的解法，和上面差不多，更容易理解点。 循环里面只考虑两个结点交换
+```
+  if head == nil || head.Next == nil {
+        return head.Val
+    }
+
+    var prev *ListNode
+    cur := head
+    for cur != nil {
+        cur.Next = prev
+        prev = cur
+        cur = cur.Next
+    }
+ 
+ return cur
+
+```
+
 ##### 3.两个链表第一个公共节点
 解析 https://www.nowcoder.com/questionTerminal/6ab1d9a29e88450685099d45c9e31e46
 核心思路就是全部入栈，然后再依次出栈对比数值，如果不一样，那么久找到了分叉点
