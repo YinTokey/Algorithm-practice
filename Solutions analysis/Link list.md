@@ -327,6 +327,21 @@ void *memcpy(void *dest,const void *src,size_t n)
 
 这里虽然可以构建有序数组，但是会增加额空间O(n)。如果不适应数组，那么可以每次都遍历链表，找到中间节点，然后递归构建。时间复杂度O(nLogn)
 
+##### 求链表中间节点
+最朴素的方法，遍历一遍，求链表总节点个数，然后第二次遍历定位目标节点。
+好一点的方法，使用快慢指针，第一个指针一次走一步，第二个指针一次走两步。当第二个指针走到尾部，就可以根据第一个指针得出结果。
+下面是Go的解法
+```
+   front := head
+
+    for front != nil && front.Next != nil {
+        front = front.Next.Next
+        head = head.Next
+    }
+
+    return head
+
+```
 
 
 
