@@ -186,7 +186,7 @@ func getIntersectionNode(headA, headB *ListNode) *ListNode {
 
 
 ##### 4.删除链表重复节点
-就是使用两个指针操作。这题很巧妙的地方在于建一个辅助空节点，指向第一个节点，这么做的目的是为了解决第一个节点就是重复节点的情况，这种情况如果不建辅助节点，那么第一个节点删不掉。
+有序链表：就是使用两个指针操作。这题很巧妙的地方在于建一个辅助空节点，指向第一个节点，这么做的目的是为了解决第一个节点就是重复节点的情况，这种情况如果不建辅助节点，那么第一个节点删不掉。
 ```
    def deleteDuplication(self, pHead):
         if pHead == None or pHead.next == None:
@@ -208,6 +208,54 @@ func getIntersectionNode(headA, headB *ListNode) *ListNode {
         return head.next
 ```
 
+`无序链表` 会比较麻烦。有两种解法，方法一利用哈希表，时间复杂度O(n) , 空间复杂度O(n)。方法二不使用额外空间，但是时间复杂度会增加到O(n^2)。下面分别用Go实现
+```
+方法1：有额外空间
+func removeDuplicateNodes(head *ListNode) *ListNode {
+    if head == nil || head.Next == nil {
+        return head
+    }
+    var nodemap map[int]bool
+    // map 记得要初始化
+    nodemap = make(map[int]bool)
+    nodemap[head.Val] = true
+    pos := head
+    for pos.Next != nil {
+        cur := pos.Next
+        if nodemap[cur.Val] == false {
+            nodemap[cur.Val] = true
+            pos = pos.Next
+        } else {
+            pos.Next = pos.Next.Next
+        }
+    }
+    
+    return head
+}
+
+```
+```
+方法2 无额外空间。头部保留一个节点，然后遍历删除后续和该节点值相同的节点。两重循环，达到目的。
+二重循环，在leetcode上运行时间，比方法1慢了20几倍
+
+func removeDuplicateNodes(head *ListNode) *ListNode {
+    p1 := head
+    for p1 != nil {
+        p2 := p1
+        for p2.Next != nil {
+            if p2.Next.Val == p1.Val {
+                p2.Next = p2.Next.Next
+            } else {
+                p2 = p2.Next
+            }
+        }
+        p1 = p1.Next
+    }
+    return head
+}
+
+
+```
 
 ##### 5.单链表排序
 要求常数级空间复杂度
