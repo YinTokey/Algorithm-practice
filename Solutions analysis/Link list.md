@@ -104,7 +104,7 @@ func reverseList(head *ListNode) *ListNode {
 ```
 
 **解法2**
-统计两个链表的长度，以及二者的差值。假设差值为N，那么长的那条先走N步，然后再一起走，一旦发现相同，就是第一个公共节点。这种方式可以达到空间复杂度O(n)
+统计两个链表的长度，以及二者的差值。假设差值为N，那么长的那条先走N步，然后再一起走，一旦发现相同，就是第一个公共节点。这种方式可以达到空间复杂度O(1)
 ```
     def FindFirstCommonNode(self, pHead1, pHead2):
         if pHead1 == None or pHead2 == None:
@@ -133,6 +133,56 @@ func reverseList(head *ListNode) *ListNode {
             pHead2 = pHead2.next
         return None
 ```
+
+go语言解法，O（n）时间复杂度，O(1) 空间复杂度
+```
+
+func getIntersectionNode(headA, headB *ListNode) *ListNode {
+    l1 := 1
+    l2 := 1
+    tmp1 := headA
+    tmp2 := headB
+    for tmp1 != nil  {
+        tmp1 = tmp1.Next
+        l1 += 1
+    }
+
+    for tmp2 != nil  {
+        tmp2 = tmp2.Next
+        l2 += 1
+    }
+
+    if l2 > l1 {
+        offset := l2 - l1
+        for offset > 0 {
+            headB = headB.Next
+            offset -= 1
+        }
+    } else if l2 < l1 {
+        offset := l1 - l2
+        for offset > 0 {
+            headA = headA.Next
+            offset -= 1
+        }
+    }
+
+    // 一起走
+    for headA != nil {
+
+        if headA == headB {
+            return headA
+        } else {
+            headA = headA.Next
+            headB = headB.Next
+        }
+
+    }
+
+    return nil
+}
+
+```
+
 
 
 ##### 4.删除链表重复节点
@@ -276,6 +326,35 @@ https://www.nowcoder.com/practice/529d3ae5a407492994ad2a246518148a?tpId=13&tqId=
             
         return head.next
 ```
+go 语言实现，注意构建空节点
+```
+func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
+    var ptr1 *ListNode = &ListNode{Val:0,Next:nil}
+    head := ptr1
+
+    for l1 != nil && l2 != nil {
+        if l1.Val < l2.Val {
+            ptr1.Next = l1
+            l1 = l1.Next
+        } else {
+            ptr1.Next = l2
+            l2 = l2.Next
+        }
+        ptr1 = ptr1.Next
+    }
+
+    if l1 != nil {
+        ptr1.Next = l1
+    }
+
+    if l2 != nil {
+        ptr1.Next = l2
+    }
+
+    return head.Next
+}
+
+```
 
 ##### 9 合并多个排序链表
 上一题的升级版
@@ -292,6 +371,7 @@ def mergeLists(lists):
 	right = mergeList(lists[mid:])
 	return merge(left,right)
 ```
+
 
 ##### 10 实现memcpy
 ```
@@ -332,7 +412,8 @@ void *memcpy(void *dest,const void *src,size_t n)
 好一点的方法，使用快慢指针，第一个指针一次走一步，第二个指针一次走两步。当第二个指针走到尾部，就可以根据第一个指针得出结果。
 下面是Go的解法
 ```
-   front := head
+func middleNode(head *ListNode) *ListNode {
+    front := head
 
     for front != nil && front.Next != nil {
         front = front.Next.Next
@@ -340,6 +421,9 @@ void *memcpy(void *dest,const void *src,size_t n)
     }
 
     return head
+
+}
+
 
 ```
 
