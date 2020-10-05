@@ -105,6 +105,28 @@ func max(a, b int) int {
 }
 
 ```
+由于表格存在左上到右下递增趋势，可以对空间复杂度优化到O(n)。参照国际站Java最优解
+https://www.youtube.com/watch?v=DuikFLPt8WQ&feature=emb_title
+```
+func longestCommonSubsequence(text1 string, text2 string) int {
+    n, m := len(text1), len(text2)
+    dp := make([]int, m+1)
 
+    for i := 1; i <= n; i++ {
+        prev := 0
+        for j := 1; j <= m; j++ {
+            tmp := dp[j]
+            if text1[i-1] == text2[j-1] {
+                dp[j] = prev + 1
+            } else {
+                dp[j] = max(dp[j],dp[j-1])
+            }
+            prev = tmp
+        }
+    }
+    return dp[m]
+}
+
+```
 
 
