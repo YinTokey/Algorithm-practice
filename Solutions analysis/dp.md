@@ -21,6 +21,25 @@ func uniquePaths(m int, n int) int {
 }
 
 ```
+利用滚动一维数组，每次都存储与更新最有解，可以把空间复杂度优化到O(n)
+```
+func uniquePaths(m int, n int) int {
+
+    opt := make([]int,n)
+
+    for i:=0; i < m ; i++ {
+        for j :=0; j< n; j++ {
+            if i == 0 || j == 0 {
+                opt[j] = 1
+            } else {
+                opt[j] = opt[j-1] + opt[j]
+            }
+        }
+    }
+    return opt[n-1]
+}
+
+```
 
 
 
