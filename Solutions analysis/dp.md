@@ -130,3 +130,27 @@ func longestCommonSubsequence(text1 string, text2 string) int {
 ```
 
 
+##### 121  买卖股票的最佳时机
+这题比较简单，只允许买卖一次。可以直接用贪心算法。如果是变种题多次买卖的，则要考虑使用DP
+使用一个变量记录历史最低点，最低点买入后，后面就考虑什么时候卖收益最高即可。
+时间复杂度O(n), 空间复杂度O(1)
+```
+import "math"
+
+func maxProfit(prices []int) int {
+    var minPrice, maxProfit = math.MaxInt64, 0
+
+    for _, value := range prices {
+        if value < minPrice {
+            minPrice = value
+        } else if value - minPrice > maxProfit {
+            maxProfit = value - minPrice
+        }
+    }
+    return maxProfit
+}
+
+
+```
+
+
