@@ -25,6 +25,27 @@ class Solution:
             slow = slow.next
         return slow
 ```
+go版本判断链表是否有环
+```
+func hasCycle(head *ListNode) bool {
+    if head == nil || head.Next == nil {
+        return false
+    }
+    fast, slow := head.Next, head
+    for fast != slow {
+        if fast.Next != nil && fast.Next.Next != nil {
+            fast = fast.Next.Next
+            slow = slow.Next
+        } else {
+            return false 
+        }
+    }
+    return true
+}
+
+```
+
+
 ##### 2.反转链表
 牛客网就有分析，具体不贴了，直接贴AC代码，画个图很好理解。总结一下就是temp保存next,指向last,
 ```
