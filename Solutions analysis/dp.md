@@ -174,3 +174,23 @@ func maxProfit(prices []int) int {
 这题只能最多两次买卖，需要用到一维动态规划
 
 
+
+##### 338. 比特位计数
+一般dp是i和i-1的关系。这题也可以，但是因为这题是二进制，所以可以考虑 i和i/2的状态转移方程。
+可以得到下面关系 f(i) = f(i/2)+ i%2   (即区分奇偶)，这种题目主要还是靠熟练度。
+
+```
+func countBits(num int) []int {
+    resutl := make([]int,num+1)
+    //第一个为0，从1开始遍历
+    // f(i) = f(i/2)+ i%2
+    for i := 1; i <= num; i++ {
+        resutl[i] = resutl[i>>1] + (i & 1)
+    }
+    return resutl
+}
+
+
+```
+
+
