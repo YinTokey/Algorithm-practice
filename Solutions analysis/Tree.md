@@ -445,4 +445,35 @@ def heapSort(arr):
 	   shift_down(arr,0,end-1)
 	return arr
 ```
+##### 98. 验证二叉搜索树
+只要说道二叉搜索树，就可以考虑和中序遍历关联起来。本题思路非常简单，中序遍历结果只要不是升序的，就不是二叉搜索树。这里要注意一个技巧，go语言没有栈，只能用数组操作来模拟栈。
+```
+import "math"
+
+func isValidBST(root *TreeNode) bool {
+    var stack = make([]*TreeNode,0)
+    inorder := math.MinInt64
+
+    for len(stack) > 0 || root != nil {
+        for root != nil {
+            //入栈
+            stack = append(stack,root)
+            root = root.Left
+        }
+        //出栈
+        root = stack[len(stack)-1]
+        stack = stack[:len(stack)-1]
+        if root.Val <= inorder {
+            return false
+        } 
+        
+        inorder = root.Val
+        root = root.Right
+        
+    }
+    return true
+}
+
+```
+
 
