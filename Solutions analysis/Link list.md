@@ -25,45 +25,34 @@ class Solution:
             slow = slow.next
         return slow
 ```
-go版本判断链表是否有环
-```
-func hasCycle(head *ListNode) bool {
-    if head == nil || head.Next == nil {
-        return false
-    }
-    fast, slow := head.Next, head
-    for fast != slow {
-        if fast.Next != nil && fast.Next.Next != nil {
-            fast = fast.Next.Next
-            slow = slow.Next
-        } else {
-            return false 
-        }
-    }
-    return true
-}
 
+go版本求环形链表交叉节点，也可以用这个判断链表是否有环
 ```
-go版本求环形链表交叉节点
-```
+func detectCycle(head *ListNode) *ListNode {
+
     if head == nil || head.Next == nil {
         return nil
     }
-    fast, slow := head.Next, head
-    for fast != slow {
-        if fast.Next != nil && fast.Next.Next != nil {
-            fast = fast.Next.Next
-            slow = slow.Next
-        } else {
-            return nil 
+    slow, fast := head, head
+
+    for fast != nil && fast.Next != nil {
+        slow = slow.Next
+        fast = fast.Next.Next
+        if slow == fast {
+            break
         }
     }
-    fast = head
-    for fast != slow {
-    	   fast = fast.Next
-    	   slow = slow.Next
+    if fast == nil || fast.Next == nil {
+        return nil
     }
-	  return slow
+    fast = head
+    for fast != slow {
+        fast = fast.Next
+        slow = slow.Next
+    }
+    return slow
+}
+
 ```
 
 
