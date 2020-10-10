@@ -44,6 +44,27 @@ func hasCycle(head *ListNode) bool {
 }
 
 ```
+go版本求环形链表交叉节点
+```
+    if head == nil || head.Next == nil {
+        return nil
+    }
+    fast, slow := head.Next, head
+    for fast != slow {
+        if fast.Next != nil && fast.Next.Next != nil {
+            fast = fast.Next.Next
+            slow = slow.Next
+        } else {
+            return nil 
+        }
+    }
+    fast = head
+    for fast != slow {
+    	   fast = fast.Next
+    	   slow = slow.Next
+    }
+	  return slow
+```
 
 
 ##### 2.反转链表
@@ -492,7 +513,6 @@ func middleNode(head *ListNode) *ListNode {
     return head
 
 }
-
 
 ```
 
