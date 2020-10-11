@@ -218,6 +218,21 @@ func climbStairs(n int) int {
 然后一维的dp问题，都可以考虑用滚动数组，把空间复杂度优化到O(1)。同理二维dp可以把空间复杂度优化到O(n)。
 
 下面是优化：考虑到数值存储只涉及i,i-1,i-2，所以可以用三个常量来滚动暂存dp[i]
+```
+func climbStairs(n int) int {
+    if n <= 2 {
+        return n
+    }
+    a, b , c := 1 ,1, 2
 
+    for i := 2; i <= n; i++ {
+        c = a + b
+        a = b
+        b = c
+    }
+    return c
+}
+
+```
 
 
