@@ -193,7 +193,7 @@ func countBits(num int) []int {
 
 ```
 ##### 70. 爬楼梯
-这题可以递归剪枝，也可以使用dp。最简单的爬楼梯，可以转换为斐波那契数列问题。f(i) = f(i-1)+f(i-2)。 其中f(0)=0,f(1)=1,f(2)=2。最简单的递归方法如下
+这题可以递归，也可以使用dp。最简单的爬楼梯，可以转换为斐波那契数列问题。f(i) = f(i-1)+f(i-2)。 其中f(0)=0,f(1)=1,f(2)=2。最简单的递归方法如下
 ```
 func climbStairs(n int) int {
     if n <= 2 {
@@ -201,7 +201,23 @@ func climbStairs(n int) int {
     }
     return climbStairs(n-1) + climbStairs(n-2)
 }
-
 ```
+但是这种写法，在leetcode上会超时。由于这题非常简单，记住一个原则，`基本上递归都可以用循环代替`。
+下面是非递归的dp解法
+```
+func climbStairs(n int) int {
+    dp := make([]int,n+1)
+    dp[0] = 1
+    dp[1] = 1
+    for i := 2; i <= n; i++ {
+        dp[i] = dp[i-1] + dp[i-2]
+    }
+    return dp[n]
+}
+```
+然后一维的dp问题，都可以考虑用滚动数组，把空间复杂度优化到O(1)。同理二维dp可以把空间复杂度优化到O(n)。
+
+下面是优化：考虑到数值存储只涉及i,i-1,i-2，所以可以用三个常量来滚动暂存dp[i]
+
 
 
