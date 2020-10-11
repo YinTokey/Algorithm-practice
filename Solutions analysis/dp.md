@@ -192,5 +192,16 @@ func countBits(num int) []int {
 
 
 ```
+##### 70. 爬楼梯
+这题可以递归剪枝，也可以使用dp。最简单的爬楼梯，可以转换为斐波那契数列问题。f(i) = f(i-1)+f(i-2)。 其中f(0)=0,f(1)=1,f(2)=2。最简单的递归方法如下
+```
+func climbStairs(n int) int {
+    if n <= 2 {
+        return n
+    }
+    return climbStairs(n-1) + climbStairs(n-2)
+}
+
+```
 
 
