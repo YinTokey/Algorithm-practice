@@ -479,11 +479,12 @@ func isValidBST(root *TreeNode) bool {
 ##### 530 二叉搜索树的最小绝对差
 
 中序遍历可以解决大多数二叉搜索树问题
-TODO: 代码可以简化
+非递归解法：
 ```
 func getMinimumDifference(root *TreeNode) int {
     stack := make([]*TreeNode,0)
-    re := make([]int,0)
+    re := -1
+    var pre *TreeNode = nil
 
     for len(stack) > 0 || root != nil {
         for root != nil {
@@ -492,21 +493,28 @@ func getMinimumDifference(root *TreeNode) int {
         }
         root = stack[len(stack)-1]
         stack = stack[:len(stack)-1]
-        re = append(re,root.Val)
+        if pre != nil {
+            if re == -1 {
+                re = root.Val - pre.Val
+            } else {
+                re = Min(re,root.Val - pre.Val)
+            }
+        }
 
+        pre = root
         root = root.Right
     }
 
-    val := re[1] - re[0]
-    for i :=1; i < len(re); i++ {
-        if i != len(re)-1 {
-            if re[i+1] - re[i] < val {
-                val = re[i+1] - re[i]
-            }
-        }
-    }
-    return val
+    return re
 }
+
+func Min(x, y int) int {
+    if x < y {
+        return x
+    }
+    return y
+}
+
 
 ```
 
