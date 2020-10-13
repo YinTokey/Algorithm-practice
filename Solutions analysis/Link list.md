@@ -505,5 +505,27 @@ func middleNode(head *ListNode) *ListNode {
 
 ```
 
+##### 24 两两交换链表节点
+这种题目没有任何难度，记住链表题常用解法之一，构建一个辅助头节点。
+```
+func swapPairs(head *ListNode) *ListNode {
+    
+    dummy := &ListNode{0,head}
+    tmp := dummy
+    for tmp.Next != nil && tmp.Next.Next != nil {
+        ptr1 := tmp.Next
+        ptr2 := tmp.Next.Next
+
+        tmp.Next = ptr2
+        ptr1.Next = ptr2.Next
+        ptr2.Next = ptr1
+
+        tmp = ptr1
+    }
+    return dummy.Next
+}
+
+```
+
 
 
