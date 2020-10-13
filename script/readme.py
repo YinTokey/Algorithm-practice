@@ -1,5 +1,9 @@
+# -*- coding:utf8 -*-
+
 #!/usr/bin/env python
 # Created by Bruce yuan on 18-1-22.
+
+
 import requests
 import os
 import json
@@ -13,11 +17,11 @@ class Config:
     １．　本地仓库的的路径
     ２．　github中的仓库leetcode解法的路径
     """
-    local_path = '/Users/YinjianChen/YinTokey/my_source/Leetcode-practice/problems'
+    local_path = '/Users/YinjianChen/YinTokey/my_source/Leetcode-practice'
     # solution of leetcode
-    github_leetcode_url = 'https://github.com/hey-bruce/algorithms_and_oj/blob/master/leetcode-algorithms/'
+    github_leetcode_url = 'https://github.com/YinTokey/Algorithm-practice'
     # solution of pat,　暂时还没写
-    github_pat_url = 'https://github.com/hey-bruce/algorithms_and_oj/blob/master/pat-algorithms/'
+    github_pat_url = 'https://github.com/YinTokey/Algorithm-practice'
     leetcode_url = 'https://leetcode.com/problems/'
 
 
