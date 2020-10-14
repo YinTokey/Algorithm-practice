@@ -9,7 +9,7 @@ Note: :lock: means you need to buy a book from LeetCode
 ----------------
 ## LeetCode Solution Table
 | ID | Title | Difficulty | Solution |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|:---:|:---:|:---:|:---:|
 |001|[Two Sum](https://leetcode.com/problems/two-sum/description/) |Easy|[Go](https://github.com/YinTokey/Algorithm-practice/001.%20Two%20Sum)|
 |002|[Add Two Numbers](https://leetcode.com/problems/add-two-numbers/description/) |Medium|TODO|
 |003|[Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/) |Medium|TODO|
@@ -1316,3 +1316,5 @@ Note: :lock: means you need to buy a book from LeetCode
 |1408|[String Matching in an Array](https://leetcode.com/problems/string-matching-in-an-array/description/) |Easy|TODO|
 |1409|[Queries on a Permutation With Key](https://leetcode.com/problems/queries-on-a-permutation-with-key/description/) |Medium|TODO|
 |1410|[HTML Entity Parser](https://leetcode.com/problems/html-entity-parser/description/) |Medium|TODO|
+
+
