@@ -194,5 +194,30 @@ https://blog.csdn.net/u010579068/article/details/49514745
 按照这个排序思路，时间复杂度O(n),空间复杂度O(1)
 
 
+##### 1002 查找常用字符
+
+用二维矩阵存储，然后遍历每列，如果每列的每个元素都大于1，则输出这列代表的字符。
+```
+func commonChars(A []string) []string {
+    array := make([][]int,26)
+
+    for i := 0;i < 26; i++ {
+        array[i] = make([]int,26)
+    }
+
+    for section, word := range A {
+        
+        for row, character := range word {
+
+            array[section][character-'a'] += 1
+
+        }
+    }
+
+    
+}
+
+
+```
 
 
