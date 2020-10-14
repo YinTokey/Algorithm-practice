@@ -40,10 +40,7 @@ class Question:
         self.lock = lock  # boolean，锁住了表示需要购买
         self.difficulty = difficulty
         # the solution url
-        self.python = ''
-        self.java = ''
-        self.javascript = ''
-        self.c_plus_plus = ''
+        self.go = ''
 
     def __repr__(self):
         """
@@ -102,6 +99,7 @@ class TableInform:
         else:
             print('creating {} algorithms....'.format(oj_name))
             os.mkdir(oj_algorithms)
+            
         for item in self.table_item.values():
             question_folder_name = oj_algorithms + '/' + item.id_ + '. ' + item.title
             if os.name != 'posix':
@@ -110,6 +108,19 @@ class TableInform:
             if not os.path.exists(question_folder_name):
                 print(question_folder_name + 'is not exits, create it now....')
                 os.mkdir(question_folder_name)
+                
+                gofilePath = question_folder_name + '/' + item.id_ + '. ' + item.title + ".go"
+                readmeFilePath = question_folder_name + '/' + "README.md"
+                gofile = open(gofilePath,'w')
+                refile = open(readmeFilePath,'w')
+                gofile.close
+                refile.close
+               # self.__create_go_file(question_folder_name,item.id,item.title)
+
+    def __create_go_file(self,path,id,title):
+        filePath = path + '/' + id + '. ' + title + '.go'
+        file = open(filePath,'w')
+        file.close
 
     def update_table(self, oj):
         # the complete inform should be update
@@ -133,34 +144,18 @@ class TableInform:
                     for item in files:
                         # print(os.path.abspath(item))
                         # print(folder)
-                        if item.endswith('.py'):
-                            complete_info.solved['python'] += 1
-                            # update problem inform
+                        if item.endswith('.go'):
                             folder_url = folder.replace(' ', "%20")
                             folder_url = os.path.join(folder_url, item)
                             folder_url = os.path.join(Config.github_leetcode_url, folder_url)
-                            # print(folder_url)
-                            self.table_item[folder[:3]].python = '[Python]({})'.format(folder_url)
-                        elif item.endswith('.java'):
-                            complete_info.solved['java'] += 1
-                            folder_url = folder.replace(' ', "%20")
-                            folder_url = os.path.join(folder_url, item)
-                            folder_url = os.path.join(Config.github_leetcode_url, folder_url)
-                            self.table_item[folder[:3]].java = '[Java]({})'.format(folder_url)
-                        elif item.endswith('.cpp'):
-                            complete_info.solved['c++'] += 1
-                            folder_url = folder.replace(' ', "%20")
-                            folder_url = os.path.join(folder_url, item)
-                            folder_url = os.path.join(Config.github_leetcode_url, folder_url)
-                            # print(folder_url)
-                            self.table_item[folder[:3]].c_plus_plus = '[C++]({})'.format(folder_url)
-                        elif item.endswith('.js'):
-                            complete_info.solved['javascript'] += 1
-                            folder_url = folder.replace(' ', "%20")
-                            folder_url = os.path.join(folder_url, item)
-                            folder_url = os.path.join(Config.github_leetcode_url, folder_url)
-                            # print(folder_url)
-                            self.table_item[folder[:3]].javascript = '[JavaScript]({})'.format(folder_url)
+
+                            fsize = os.path.getsize(Config.local_path + "/" + oj + "/" + folder + "/" + item)
+                            if fsize > 0:
+                                complete_info.solved['go'] += 1
+                                # update problem inform
+                                # print(folder_url)
+                                self.table_item[folder[:3]].go = '[Go]({})'.format(folder_url)
+
         readme = Readme(complete_info.total,
                         complete_info.complete_num,
                         complete_info.lock,
@@ -179,10 +174,7 @@ class CompleteInform:
 
     def __init__(self):
         self.solved = {
-            'python': 0,
-            'c++': 0,
-            'java': 0,
-            'javascript': 0
+            'go': 0
         }
         self.complete_num = 0
         self.lock = 0
@@ -214,10 +206,7 @@ class Readme:
                    'Until {}, I have solved **{}** / **{}** problems ' \
                    'while **{}** are still locked.' \
                    '\n\nCompletion statistic: ' \
-                   '\n1. JavaScript: {javascript} ' \
-                   '\n2. Python: {python}' \
-                   '\n3. C++: {c++}' \
-                   '\n4. Java: {java}' \
+                   '\n 🚀 Go: {go} ' \
                    '\n\nNote: :lock: means you need to buy a book from LeetCode\n'.format(
                     self.time, self.solved, self.total, self.locked, **self.others)
 
@@ -234,7 +223,7 @@ class Readme:
 
         with open(file_path, 'a') as f:
             f.write('## LeetCode Solution Table\n')
-            f.write('| ID | Title | Difficulty | JavaScript | Python | C++ | Java |\n')
+            f.write('| ID | Title | Difficulty | Solution |\n')
             f.write('|:---:' * 7 + '|\n')
             table, table_item = table_instance
             # print(table)
@@ -251,12 +240,9 @@ class Readme:
                     'id': item.id_,
                     'title': '[{}]({}) {}'.format(item.title, item.url, _lock),
                     'difficulty': item.difficulty,
-                    'js': item.javascript if item.javascript else 'To Do',
-                    'python': item.python if item.python else 'To Do',
-                    'c++': item.c_plus_plus if item.c_plus_plus else 'To Do',
-                    'java': item.java if item.java else 'To Do'
+                    'go': item.go if item.go else 'TODO',
                 }
-                line = '|{id}|{title}|{difficulty}|{js}|{python}|{c++}|{java}|\n'.format(**data)
+                line = '|{id}|{title}|{difficulty}|{go}|\n'.format(**data)
                 f.write(line)
             print('README.md was created.....')
 
