@@ -111,16 +111,16 @@ class TableInform:
                 
                 gofilePath = question_folder_name + '/' + item.id_ + '. ' + item.title + ".go"
                 readmeFilePath = question_folder_name + '/' + "README.md"
+                testfilePath = question_folder_name + '/' + item.id_ + '. ' + item.title + "_test.go"
+
                 gofile = open(gofilePath,'w')
-                refile = open(readmeFilePath,'w')
+                testfile = open(testfilePath,'w')
+                readmefile = open(readmeFilePath,'w')
                 gofile.close
-                refile.close
+                testfile.close
+                readmefile.close
                # self.__create_go_file(question_folder_name,item.id,item.title)
 
-    def __create_go_file(self,path,id,title):
-        filePath = path + '/' + id + '. ' + title + '.go'
-        file = open(filePath,'w')
-        file.close
 
     def update_table(self, oj):
         # the complete inform should be update
@@ -142,13 +142,14 @@ class TableInform:
                     if len(files) != 0:
                         complete_info.complete_num += 1
                     for item in files:
+                        
                         # print(os.path.abspath(item))
                         # print(folder)
                         if item.endswith('.go'):
                             folder_url = folder.replace(' ', "%20")
-                            folder_url = os.path.join(folder_url, item)
+                           # folder_url = os.path.join(folder_url, item)
                             folder_url = os.path.join(Config.github_leetcode_url, folder_url)
-
+                            print(folder_url)
                             fsize = os.path.getsize(Config.local_path + "/" + oj + "/" + folder + "/" + item)
                             if fsize > 0:
                                 complete_info.solved['go'] += 1
