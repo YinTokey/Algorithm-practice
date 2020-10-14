@@ -1,8 +1,7 @@
-# Keep thinking, keep alive
-Until 2020-10-14 19:36:32, I have solved **1473** / **1473** problems while **232** are still locked.
+# 🛰 Keep thinking, keep alive
+🚀 Until 2020-10-14 20:07:00, I have solved **1** / **1473** problems while **232** are still locked.
 
 Completion statistic: 
- 🚀 Go: 1 
 
 Note: :lock: means you need to buy a book from LeetCode
 
@@ -10,7 +9,7 @@ Note: :lock: means you need to buy a book from LeetCode
 ## LeetCode Solution Table
 | ID | Title | Difficulty | Solution |
 |:---:|:---:|:---:|:---:|
-|001|[Two Sum](https://leetcode.com/problems/two-sum/description/) |Easy|[Go](https://github.com/YinTokey/Algorithm-practice/001.%20Two%20Sum)|
+|001|[Two Sum](https://leetcode.com/problems/two-sum/description/) |Easy|[Go](https://github.com/YinTokey/Algorithm-practice/tree/master/leetcode-algorithms/001.%20Two%20Sum)|
 |002|[Add Two Numbers](https://leetcode.com/problems/add-two-numbers/description/) |Medium|TODO|
 |003|[Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/) |Medium|TODO|
 |004|[Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/description/) |Hard|TODO|

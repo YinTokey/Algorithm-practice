@@ -21,7 +21,7 @@ class Config:
     # solution of leetcode
     github_leetcode_url = 'https://github.com/YinTokey/Algorithm-practice'
     # solution of pat,　暂时还没写
-    github_pat_url = 'https://github.com/YinTokey/Algorithm-practice'
+    github_pat_url = 'https://github.com/YinTokey/Algorithm-practice/tree/master/leetcode-algorithms'
     leetcode_url = 'https://leetcode.com/problems/'
 
 
@@ -148,19 +148,19 @@ class TableInform:
                         if item.endswith('.go'):
                             folder_url = folder.replace(' ', "%20")
                            # folder_url = os.path.join(folder_url, item)
-                            folder_url = os.path.join(Config.github_leetcode_url, folder_url)
-                            print(folder_url)
+                            folder_url = os.path.join(Config.github_pat_url, folder_url)
+                            #print(folder_url)
                             fsize = os.path.getsize(Config.local_path + "/" + oj + "/" + folder + "/" + item)
                             if fsize > 0:
-                                complete_info.solved['go'] += 1
+                                complete_info.solved += 1
                                 # update problem inform
-                                # print(folder_url)
+                                
                                 self.table_item[folder[:3]].go = '[Go]({})'.format(folder_url)
 
         readme = Readme(complete_info.total,
-                        complete_info.complete_num,
+                        complete_info.solved,
                         complete_info.lock,
-                        complete_info.solved)
+                        complete_info.complete_num)
         readme.create_leetcode_readme([self.table, self.table_item])
         print('-------the complete inform-------')
         print(complete_info.solved)
@@ -174,9 +174,7 @@ class CompleteInform:
     """
 
     def __init__(self):
-        self.solved = {
-            'go': 0
-        }
+        self.solved = 0
         self.complete_num = 0
         self.lock = 0
         self.total = 0
@@ -203,13 +201,14 @@ class Readme:
         self.others = others
         self.locked = locked
         self.time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-        self.msg = '# Keep thinking, keep alive\n' \
-                   'Until {}, I have solved **{}** / **{}** problems ' \
+        self.msg = '# 🛰 Keep thinking, keep alive\n' \
+                   '🚀 Until {}, I have solved **{}** / **{}** problems ' \
                    'while **{}** are still locked.' \
                    '\n\nCompletion statistic: ' \
-                   '\n 🚀 Go: {go} ' \
                    '\n\nNote: :lock: means you need to buy a book from LeetCode\n'.format(
-                    self.time, self.solved, self.total, self.locked, **self.others)
+                    self.time, self.solved, self.total, self.locked)
+        print("init...")
+        print(self.solved)
 
     def create_leetcode_readme(self, table_instance):
         """
