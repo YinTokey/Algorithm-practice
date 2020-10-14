@@ -1,5 +1,5 @@
 # Keep thinking, keep alive
-Until 2020-10-14 17:16:39, I have solved **1473** / **1473** problems while **232** are still locked.
+Until 2020-10-14 19:36:32, I have solved **1473** / **1473** problems while **232** are still locked.
 
 Completion statistic: 
  🚀 Go: 1 
@@ -1316,5 +1316,3 @@ Note: :lock: means you need to buy a book from LeetCode
 |1408|[String Matching in an Array](https://leetcode.com/problems/string-matching-in-an-array/description/) |Easy|TODO|
 |1409|[Queries on a Permutation With Key](https://leetcode.com/problems/queries-on-a-permutation-with-key/description/) |Medium|TODO|
 |1410|[HTML Entity Parser](https://leetcode.com/problems/html-entity-parser/description/) |Medium|TODO|
-
-
