@@ -196,42 +196,46 @@ https://blog.csdn.net/u010579068/article/details/49514745
 
 ##### 1002 查找常用字符
 
-用二维矩阵存储，然后遍历每列，如果每列的每个元素都大于1，则输出这列代表的字符。
+用二维矩阵存储，然后遍历每列，如果每列的每个元素都大于1，则输出这列代表的字符。考虑到重复字符，再检查每列都大于1时，这一列的最小值，即需要输出的字符格式。这题思路很简单，就是写起来繁琐。
 ```
-func commonChars(A []string) []string {
-    array := make([][]int,26)
+func commonChars(A []string) []string {
+	array := make([][]int,len(A))
 
-    for i := 0;i < 26; i++ {
-        array[i] = make([]int,26)
-    }
+	for i := 0;i < len(A); i++ {
+		array[i] = make([]int,26)
+	}
 
-    for section, word := range A {
-        
-        for _, character := range word {
+	for section, word := range A {
 
-            array[section][character-'a']++
+		for row := 0; row < len(word); row++ {
+			c := word[row]
+			array[section][c-'a']++
+		}
+	}
 
-        }
-    }
+	result := make([]string,0)
+	for j := 0 ; j < 26; j++ {
+		var shouldOutput bool = true
+		minCount := math.MaxInt64
+		for i := 0; i < len(A); i++ {
+			if array[i][j] == 0 {
+				shouldOutput = false
+			} else if array[i][j] < minCount {
+				minCount = array[i][j]
+			}
+		}
 
-    result := make([]string,0)
-    for j := 0 ; j < 26; j++ {
-        var shouldOutput bool = true
-        for i := 0; i < 26; i++ {
-            if array[i][j] == 0 {
-                shouldOutput = false
-            }
-        }
-        if shouldOutput {
-            result = append(result,string('a'+j))
-        }
+		if shouldOutput {
+			for x := 0; x < minCount; x ++ {
+				result = append(result,string('a'+j))
+			}
+		}
 
-    }
+	}
 
-    return result
+	return result
 
 }
-
 
 
 ```
