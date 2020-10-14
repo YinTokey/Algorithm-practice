@@ -207,15 +207,31 @@ func commonChars(A []string) []string {
 
     for section, word := range A {
         
-        for row, character := range word {
+        for _, character := range word {
 
-            array[section][character-'a'] += 1
+            array[section][character-'a']++
 
         }
     }
 
-    
+    result := make([]string,0)
+    for j := 0 ; j < 26; j++ {
+        var shouldOutput bool = true
+        for i := 0; i < 26; i++ {
+            if array[i][j] == 0 {
+                shouldOutput = false
+            }
+        }
+        if shouldOutput {
+            result = append(result,string('a'+j))
+        }
+
+    }
+
+    return result
+
 }
+
 
 
 ```
