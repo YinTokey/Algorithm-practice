@@ -190,6 +190,10 @@ func levelOrder(root *Node) [][]int {
 	return levelOrder
 }
 
+func BFS(root *Node) {
+	visited :=
+}
+
 //------------------------------------------------
 
 // 冒泡
