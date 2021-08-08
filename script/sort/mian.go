@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 type Initer interface {
@@ -29,10 +30,92 @@ type Node struct {
 // -----------------------------------------------
 
 func main()  {
-	arr := []int{9,11,222,-19,-3,0,5}
-	fmt.Println(arr)
-	result := mergeSort(arr)
-	fmt.Println(result)
+	//arr := []int{9,11,222,-19,-3,0,5}
+	//fmt.Println(arr)
+	//result := mergeSort(arr)
+	//fmt.Println(result)
+
+	k := 3
+	arr := []int{4,3,6,7}
+
+
+
+	re := minStoneSum(arr,k)
+	fmt.Println(re)
+}
+
+func minStoneSum(piles []int, k int) int {
+
+	for k > 0 {
+		idx := findBigest(piles)
+		fmt.Println(idx)
+		piles[idx] = int(math.Ceil(float64(piles[idx]) / 2))
+		k--
+	}
+
+	return sumArr(piles)
+}
+
+func findBigest(arr []int) int {
+	if len(arr) == 1 {
+		return 0
+	}
+	re := 0
+	big := arr[0]
+	for i := 1; i < len(arr) ; i++ {
+		v := arr[i]
+		if v > big {
+			big = v
+			re = i
+		}
+	}
+
+	return re
+}
+
+func sumArr(arr []int) int {
+	re := 0
+	for _,v := range arr {
+		re += v
+	}
+	return re
+}
+
+func isPrefixString(s string, words []string) bool {
+	if len(words) == 0 {
+		return false
+	}
+	if len(words) == 1 {
+		return s == words[0]
+	}
+
+	re := true
+
+	for i := 0; i < len(words); i++ {
+		if len(s) == 0 {
+			return true
+		}
+		v := words[i]
+		var sub string
+		if len(v) <= len(s) {
+			sub = s[:len(v)]
+		} else {
+			return false
+		}
+		fmt.Println(sub)
+		fmt.Println(v)
+		fmt.Println(s)
+		if sub != v {
+			return false
+		}
+		s = s[len(v):]
+	}
+
+	if len(s) > 0 {
+		return false
+	}
+
+	return re
 }
 
 func preOrder(root *Node) {
@@ -190,9 +273,9 @@ func levelOrder(root *Node) [][]int {
 	return levelOrder
 }
 
-func BFS(root *Node) {
-	visited :=
-}
+//func BFS(root *Node) {
+//	visited :=
+//}
 
 //------------------------------------------------
 
