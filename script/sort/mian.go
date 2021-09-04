@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 	"math"
-	"container/heap"
+	"sort"
+	"strconv"
 )
 
 type Initer interface {
@@ -31,7 +32,7 @@ type Node struct {
 type IntHeap []int
 
 func (h IntHeap) Len() int           { return len(h) }
-func (h IntHeap) Less(i, j int) bool { return h[i] < h[j] }
+func (h IntHeap) Less(i, j int) bool { return h[i] > h[j] }
 func (h IntHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
 
 func (h *IntHeap) Push(x interface{}) {
@@ -49,19 +50,55 @@ func (h *IntHeap) Pop() interface{} {
 	return x
 }
 
+func (h *IntHeap) Top() interface{} {
+	old := *h
+	n := len(old)
+	x := old[n-1]
+	return x
+}
+
 
 
 // -----------------------------------------------
 
 func main()  {
-	h := &IntHeap{2, 1, 5}
-	heap.Init(h)
-	heap.Push(h, 3) // 往堆中推入元素
-	fmt.Printf("minimum: %d\n", (*h)[0])
-	for h.Len() > 0 {
-		fmt.Printf("%d ", heap.Pop(h))
-	}
+	// 默认小顶堆
+	//h := &IntHeap{100,16,4,8,70,2,36,22,5,12}
+	//heap.Init(h)
+//	heap.Push(h, 3) // 往堆中推入元素
+	//for h.Len() > 0 {
+	//	fmt.Printf("%d ", heap.Pop(h))
+	//}
+
+	arr := []int{1,5,6,2,3,4}
+	re := quickSort(arr,0,5)
+	fmt.Println(re)
 }
+
+
+
+func minimumDifference(s []string, k int) string {
+
+	sort.Slice(s, func(i, j int) bool {
+		numA, _ := strconv.Atoi(s[i])
+		numB, _ := strconv.Atoi(s[j])
+		return numA < numB
+	})
+
+	fmt.Println(s)
+
+	return s[len(s)-k+1]
+
+}
+
+//func findMin(nums []int) int {
+//	heap.Init(nums)
+//	heap.Push(h, 3) // 往堆中推入元素
+//	for h.Len() > 0 {
+//		fmt.Printf("%d ", heap.Pop(h))
+//	}
+//}
+
 
 func minStoneSum(piles []int, k int) int {
 
@@ -368,35 +405,4 @@ func merge(left []int,right []int) []int {
 	return tmp
 }
 
-// 快速排序
-//func quickSort(arr []int) []int {
-//	if len(arr) < 2 {
-//		return arr
-//	}
-//	left, right := 0, len(arr)-1
-//	pivot := getPivot(arr)
-//	// pivot 放到最右侧，方便操作，因为不知道 Pivot 左边到底有多少个，pivot 直接放原地，不好搞
-//	arr[pivot],arr[right] = arr[right],arr[pivot]
-//	for i,_ := range arr {
-//		if arr[i]
-//	}
-//
-//}
-//func quickSort(arr []int,left int,right int) []int {
-//
-//
-//
-//}
 
-func getPivot(arr []int) int {
-	length := len(arr)
-	mid := arr[length/2]
-	if mid > arr[0]  && mid < arr[length-1] {
-		return length/2
-	} else if arr[0] > mid && arr[0] < arr[length-1] {
-		return 0
-	} else {
-		return length-1
-	}
-
-}
