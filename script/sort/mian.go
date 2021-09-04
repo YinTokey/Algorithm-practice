@@ -70,9 +70,7 @@ func main()  {
 	//	fmt.Printf("%d ", heap.Pop(h))
 	//}
 
-	arr := []int{1,5,6,2,3,4}
-	re := quickSort(arr,0,5)
-	fmt.Println(re)
+
 }
 
 

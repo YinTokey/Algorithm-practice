@@ -24,6 +24,7 @@ func quickSort(arr []int, low, high int) []int {
 	return arr
 }
 
+
 func getPivot(arr []int) int {
 	length := len(arr)
 	mid := arr[length/2]
@@ -35,4 +36,25 @@ func getPivot(arr []int) int {
 		return length-1
 	}
 
+}
+
+func findTopK(arr []int, k int) ([]int) {
+
+	low := 0
+	high := len(arr)-1
+
+	for  {
+		_, p := partition(arr,low, high)
+		if p == k - 1 {
+			break
+		} else if p > k - 1 {
+			high = k-1
+		} else {
+			low = k - 1
+		}
+	}
+
+	re := arr[:k]
+
+	return re
 }
