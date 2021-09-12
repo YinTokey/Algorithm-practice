@@ -1,5 +1,13 @@
 package main
 
+import "fmt"
+
+func main() {
+	arr := []int{1,3,5,7,2,4,6,8}
+	re := findTopK(arr,4)
+	fmt.Println(re)
+}
+
 //  每次 arr 都是整个数组，而不是子数组。通过 low high 来区分
 func partition(arr []int, low, high int) ([]int, int) {
 	pivot := arr[high]
@@ -45,12 +53,13 @@ func findTopK(arr []int, k int) ([]int) {
 
 	for  {
 		_, p := partition(arr,low, high)
+		fmt.Println(p)
 		if p == k - 1 {
 			break
 		} else if p > k - 1 {
-			high = k-1
+			high = p - 1
 		} else {
-			low = k - 1
+			low = p + 1
 		}
 	}
 

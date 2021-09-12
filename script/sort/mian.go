@@ -70,9 +70,130 @@ func main()  {
 	//	fmt.Printf("%d ", heap.Pop(h))
 	//}
 
+	//arr := []int{1,5,6,2,3,4}
+	//re := findTopK(arr,4)
+	//fmt.Println(re)
+
+	arr := []string{"eat", "tea", "tan", "ate", "nat", "bat"}
+	re := groupAnagrams(arr)
+	fmt.Println(re)
 
 }
 
+func groupAnagrams(strs []string) [][]string {
+	mp := make(map[string][]string)
+
+	for _, v0 := range strs {
+		flag := false
+		for k1,_ := range mp {
+			if isAnagram(k1,v0) {
+				mp[k1] = append(mp[k1],v0)
+				flag = true
+				break
+			}
+		}
+		if flag == false {
+			mp[v0] = append(mp[v0],v0)
+		}
+	}
+
+	var re = [][]string{}
+	for _,v := range mp {
+		re = append(re,v)
+	}
+
+	return re
+}
+
+func isAnagram(s string, t string) bool {
+	var arr1, arr2 [26]int
+
+	for _,v := range s {
+		arr1[v-'a']++
+	}
+	for _,v := range t {
+		arr2[v-'a']++
+	}
+	return arr1 == arr2
+}
+
+func reverseOnlyLetters(s string) string {
+	b := []byte(s)
+	start := 0
+	end := len(b) - 1
+	for start < end {
+		if !isAph(b[start]) {
+			fmt.Println("1")
+			start++
+		} else if !isAph(b[end]) {
+			fmt.Println("2")
+
+			end--
+		} else {
+			fmt.Println("3")
+
+			b[start], b[end] = b[end], b[start]
+			start++
+			end--
+		}
+
+	}
+
+	return string(b)
+}
+
+func isAph(c byte) bool {
+
+	if c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' {
+		return true
+	}
+	return false
+
+}
+
+func reverseWords(s string) string {
+	b := []byte(s)
+	b = reverse(b,0,len(b)-1)
+	j := 0
+	for i,v := range b {
+		if v == ' ' {
+			b = reverse(b,j,i-1)
+			j = i+1
+		}
+		if i == len(b)-1 {
+			b = reverse(b,j,i)
+		}
+	}
+	return string(b)
+}
+
+func removeSpace(s []byte) string {
+	slow,fast := 0,0
+	// 去除头部空格
+	for len(s) > 0 && fast < len(s) && s[fast] == ' ' {
+		fast++
+	}
+	// 去除中间空格
+	for ; fast < len(s); fast++ {
+		if s[fast] == s[fast-1] && s[fast] == ' ' && fast-1 > 0 {
+			continue
+		}
+		s[slow] = s[fast]
+		slow++
+	}
+	// 去除尾部空格, 这时候 slow 右侧就是空格
+	s = s[:slow]
+	return string(s)
+}
+
+func reverse(s []byte, start, end int) []byte {
+	for start < end {
+		s[start], s[end] = s[end], s[start]
+		start++
+		end--
+	}
+	return s
+}
 
 
 func minimumDifference(s []string, k int) string {
