@@ -3,26 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	str := "(((((*(()((((*((**(((()()*)()()()*((((**)())*)*)))))))(())(()))())((*()()(((()((()*(())*(()**)()(())"
-
-	l,r,c := 0,0,0
-
-	for _,v := range str {
-		if v == '*' {
-			c++
-		}
-		if v == '(' {
-			l++
-		}
-		if v == ')' {
-			r++
-		}
-	}
-
-	fmt.Println(l)
-	fmt.Println(r)
-	fmt.Println(c)
-
+	s := "helloword"
+	fmt.Println(string(s[3:6]))
 
 
 }
