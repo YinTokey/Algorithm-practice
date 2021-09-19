@@ -3,9 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	s := "helloword"
-	fmt.Println(string(s[3:6]))
-
+	dp := make([]int,6,1)
+	fmt.Println(dp)
 
 }
 
