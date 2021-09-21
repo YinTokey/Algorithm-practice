@@ -1,13 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 
-	coins := []int{186,419,83,408}
-	amount := 6249
+	coins := []int{1,2,5}
+	amount := 5
 
-	re := coinChange(coins,amount)
+	re := change(amount,coins)
 	fmt.Println(re)
 
 }
@@ -111,39 +113,22 @@ func transSmall(c byte) byte {
 	return c
 }
 
-
-func coinChange(coins []int, amount int) int {
-	n := len(coins)
-
-	dp := make([][]int,n + 1)
-	for i := range dp {
-		dp[i] = make([]int,amount + 1)
-	}
-	//  第一列都为0，默认初始化时就是了，不用操作
-
-	// 设置一个无效值，因为求最小，所以无效值尽可能取非常大的
-	invalidNum := amount + 1
-	for j := 1; j <= amount ; j++ {
-		//当 i =0 , j != 0
-		//	dp[0][x] = 无效值 因为计算过程中涉及到了min(,)操作，怎么避免无效值的干扰？我们设定无效值等于一个很大的不可能的值
-		dp[0][j] = invalidNum
-	}
-	//其他为0的情况 我们就不用初始化了，数组默认0
-	for i := 1; i <= n; i++ {
-		for j := 1; j <= amount ; j++ {
-			if j >= coins[i-1] {
-				dp[i][j] = min(dp[i-1][j],dp[i][j - coins[i-1]] + 1)
+func change(amount int, coins []int) int {
+	// 1. 二维dp构建
+	dp := make([]int,amount+1)
+	dp[0] = 1
+	// 3. 遍历处理
+	for i := 0; i <= len(coins); i++ {
+		for j := 1; j <= amount; j++ {
+			if j >= coins[i] {
+				dp[i][j] = dp[i][j-coins[i-1]]+dp[i-1][j]
 			} else {
 				dp[i][j] = dp[i-1][j]
 			}
 		}
 	}
 
-	if dp[n][amount] == invalidNum {
-		return -1
-	}else {
-		return dp[n][amount]
-	}
+	return dp[len(coins)][amount]
 }
 
 func min(x, y int) int  {
