@@ -2,15 +2,12 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 func main() {
 
-	coins := []int{1,2,5}
-	amount := 5
-
-	re := change(amount,coins)
-	fmt.Println(re)
+	fmt.Println(math.MaxInt32)
 
 }
 
@@ -113,23 +110,7 @@ func transSmall(c byte) byte {
 	return c
 }
 
-func change(amount int, coins []int) int {
-	// 1. 二维dp构建
-	dp := make([]int,amount+1)
-	dp[0] = 1
-	// 3. 遍历处理
-	for i := 0; i <= len(coins); i++ {
-		for j := 1; j <= amount; j++ {
-			if j >= coins[i] {
-				dp[i][j] = dp[i][j-coins[i-1]]+dp[i-1][j]
-			} else {
-				dp[i][j] = dp[i-1][j]
-			}
-		}
-	}
 
-	return dp[len(coins)][amount]
-}
 
 func min(x, y int) int  {
 	if x < y {
