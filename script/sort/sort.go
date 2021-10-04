@@ -1,11 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func main() {
 	arr := []int{1,3,5,7,2,4,6,8}
-	re := findTopK(arr,4)
-	fmt.Println(re)
+	sort.Ints(arr)
+	fmt.Println(arr)
 }
 
 //  每次 arr 都是整个数组，而不是子数组。通过 low high 来区分
