@@ -6,10 +6,12 @@ import (
 )
 
 func main()  {
-	nums := []int{3,2,2,3}
-	val := 3
-	removeElement(nums,val)
-	fmt.Println(nums)
+	//nums := []int{3,2,2,3}
+	//val := 3
+	//removeElement(nums,val)
+	//fmt.Println(nums)
+	var b byte
+	fmt.Println(b)
 }
 
 func removeElement(nums []int, val int) int {
@@ -25,7 +27,7 @@ func removeElement(nums []int, val int) int {
 		}
 	}
 	re := nums[r+1:]
-	nums = *nums[r+1:]
+	//nums = *nums[r+1:]
 	fmt.Println(re)
 	return len(nums)
 }
