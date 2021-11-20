@@ -12,3 +12,18 @@ func findLHS(nums []int) int {
 	}
 	return res
 }
+
+func findLHS(nums []int) int {
+	mp := make(map[int]int, 0)
+	for _, val := range nums {
+		mp[val]++
+	}
+	var ans int
+	for key, val := range mp {
+		c1, ok := mp[key+1]
+		if ok && c1 > 0 && val+c1 > ans {
+			ans = val + c1
+		}
+	}
+	return ans
+}
